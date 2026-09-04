@@ -1,50 +1,39 @@
 {
   "lastChecked": "04 Sept 2026",
-  "generatedBy": "Rules-based fallback · Gemini returned 404",
+  "generatedBy": "Gemini-assisted official-source monitor",
   "items": [
     {
       "title": "CELEX:52026PC0560: Proposal for a COUNCIL DIRECTIVE amending Directives 2003/49/EC, 2009/133/EC, 2011/96/EU, (EU) 2016/1164, (EU)2017/1852, (EU) 2025/50 as regards the simplification of the Union framework on direct taxation and supporting growth and competitiveness of the EU",
       "topic": "Tax & BEPS",
-      "date": "Recent",
-      "relevance": "High",
-      "status": "Commission proposals",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
+      "date": "",
+      "relevance": "Medium",
+      "status": "Proposal",
+      "summary": "A proposal to simplify the EU direct taxation framework by amending several existing directives. It aims to reduce administrative burdens, eliminate tax obstacles, and support cross-border growth and competitiveness for businesses operating within the Union.",
+      "financeImpact": "Potential reduction in compliance costs and simplified withholding tax procedures for cross-border B2B transactions within the EU.",
+      "action": "Monitor legislative progress and assess potential tax compliance savings for EU-wide SaaS operations.",
       "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0560"
     },
     {
       "title": "CELEX:52026PC0308: Proposal for a COUNCIL DIRECTIVE on administrative cooperation in the field of taxation (recast)",
       "topic": "Tax & BEPS",
-      "date": "Recent",
-      "relevance": "High",
-      "status": "Commission proposals",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
+      "date": "",
+      "relevance": "Medium",
+      "status": "Proposal",
+      "summary": "A proposal to recast the directive on administrative cooperation in taxation. It aims to strengthen transparency, improve information exchange between EU member states, and streamline tax reporting procedures to prevent tax evasion and avoidance.",
+      "financeImpact": "May increase reporting transparency requirements and administrative overhead for cross-border digital services and B2B SaaS transactions.",
+      "action": "Review internal tax reporting workflows to ensure readiness for enhanced EU-wide information exchange.",
       "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0308"
     },
     {
       "title": "CELEX:52026PC0502: Proposal for a REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL establishing a framework of measures for strengthening Europe’s cloud and AI ecosystem (Cloud and AI Development Act)",
       "topic": "AI & Data",
-      "date": "Recent",
+      "date": "",
       "relevance": "High",
-      "status": "Commission proposals",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential ai & data implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
+      "status": "Proposal",
+      "summary": "A proposed regulation establishing the Cloud and AI Development Act. It aims to strengthen Europe's cloud and AI ecosystem through supportive measures, funding frameworks, and infrastructure development to boost regional competitiveness.",
+      "financeImpact": "Potential access to EU funding, grants, and improved cloud infrastructure, reducing operational R&D costs for AI SaaS companies.",
+      "action": "Track funding opportunities and align product roadmap with EU cloud and AI standards.",
       "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0502"
-    },
-    {
-      "title": "CELEX:32026R1342: Commission Delegated Regulation (EU) 2026/1342 of 17 June 2026 amending Delegated Regulation (EU) 2015/98 on the implementation of the Union’s international obligations, as referred to in Article 15(2) of Regulation (EU) No 1380/2013 of the European Parliament and of the Council, under the International Convention for the Conservation of Atlantic Tunas and the Convention on Future Multilateral Cooperation in the Northwest Atlantic Fisheries",
-      "topic": "Tax & BEPS",
-      "date": "23 Aug 2026",
-      "relevance": "Medium",
-      "status": "Official Journal L",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026R1342"
     }
   ]
 }
