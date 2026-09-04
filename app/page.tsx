@@ -172,11 +172,30 @@ type RegulatoryItem = (typeof regulatoryRadar.items)[number];
 function RegulatoryRadar() {
   const topics = ["All", ...Array.from(new Set(regulatoryRadar.items.map(item => item.topic)))] as string[];
   const [topic, setTopic] = useState("All");
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [asking, setAsking] = useState(false);
+  const [askError, setAskError] = useState("");
   const visible = topic === "All" ? regulatoryRadar.items : regulatoryRadar.items.filter(item => item.topic === topic);
   const high = regulatoryRadar.items.filter(item => item.relevance === "High").length;
+  const askGemini = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const clean = question.trim();
+    if (!clean || asking) return;
+    setAsking(true); setAnswer(""); setAskError("");
+    try {
+      const context = regulatoryRadar.items.map(item => ({ title:item.title, topic:item.topic, relevance:item.relevance, summary:item.summary, financeImpact:item.financeImpact, action:item.action, url:item.url }));
+      const response = await fetch("/.netlify/functions/ask-gemini", { method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({ question:clean, context }) });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || "The assistant is temporarily unavailable.");
+      setAnswer(payload.answer);
+    } catch (error) { setAskError(error instanceof Error ? error.message : "The assistant is temporarily unavailable."); }
+    finally { setAsking(false); }
+  };
   return <section className="view">
     <div className="page-heading radar-heading"><div><p className="eyebrow">EU REGULATORY RADAR</p><h1>Discover change.<br/><span>Translate the impact.</span></h1></div><div className="agent-status"><span className="agent-pulse"/><div><b>Discovery agent active</b><small>Last checked {regulatoryRadar.lastChecked} · {regulatoryRadar.generatedBy}</small></div></div></div>
     <div className="radar-note"><strong>Official-source monitor</strong><span>Daily screening of EU legislation and Commission proposals. AI-generated impact assessments are informational and require validation by qualified legal or tax advisers.</span></div>
+    <section className="ask-gemini"><div className="ask-copy"><span className="agent-pulse"/><div><p className="eyebrow">ASK GEMINI</p><h2>Ask a clarifying question</h2><small>Answers use only the regulatory items shown in this cockpit.</small></div></div><form onSubmit={askGemini}><input aria-label="Question for Gemini" maxLength={500} value={question} onChange={event=>setQuestion(event.target.value)} placeholder="e.g. Which development should Finance review first?"/><button type="submit" disabled={asking || !question.trim()}>{asking ? "Thinking…" : "Ask →"}</button></form>{answer && <div className="ask-answer"><span>GEMINI RESPONSE</span><p>{answer}</p></div>}{askError && <div className="ask-error">{askError}</div>}<p className="ask-disclaimer">Informational only · no chat history retained · validate tax and legal conclusions with qualified advisers.</p></section>
     <div className="radar-summary"><article><span>Relevant developments</span><strong>{regulatoryRadar.items.length}</strong><small>Current monitored set</small></article><article><span>High relevance</span><strong>{high}</strong><small>Finance review required</small></article><article><span>Source coverage</span><strong>3</strong><small>Legislation · proposals · OJ L</small></article><article><span>Next automated scan</span><strong>24h</strong><small>GitHub scheduled workflow</small></article></div>
     <div className="radar-toolbar"><div><p className="eyebrow">DISCOVERY QUEUE</p><h2>Developments ranked for finance</h2></div><div className="topic-filters" aria-label="Filter regulatory developments">{topics.map(value=><button key={value} className={topic===value?"active":""} onClick={()=>setTopic(value)}>{value}</button>)}</div></div>
     <div className="radar-list">{visible.map((item: RegulatoryItem, index: number)=><article className="radar-card" key={item.url}><div className="radar-rank">{String(index+1).padStart(2,"0")}</div><div className="radar-main"><div className="radar-meta"><span>{item.topic}</span><time>{item.date}</time><em className={item.relevance.toLowerCase()}>{item.relevance} relevance</em></div><h3>{item.title}</h3><p>{item.summary}</p><div className="impact-box"><span>FINANCE IMPACT</span><strong>{item.financeImpact}</strong></div></div><aside><span>STATUS</span><b>{item.status}</b><span>ACTION</span><p>{item.action}</p><a href={item.url} target="_blank" rel="noopener noreferrer">Open official source ↗</a></aside></article>)}</div>
