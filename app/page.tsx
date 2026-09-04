@@ -12,7 +12,7 @@ import {
   type ScenarioAssumptions,
 } from "./lib/finance";
 
-type View = "cockpit" | "revenue" | "scenario" | "compliance";
+type View = "cockpit" | "revenue" | "scenario" | "close" | "compliance";
 
 const revenueTrend = [
   ["Oct", 315], ["Nov", 328], ["Dec", 342], ["Jan", 351], ["Feb", 366], ["Mar", 382],
@@ -131,6 +131,23 @@ function ScenarioPlanner({ assumptions, setAssumptions }: { assumptions: Scenari
   </section>;
 }
 
+function MonthEndClose() {
+  const reconciliations = [
+    ["Cash & bank", "12 / 12", "100%", "Signed off", "Controller"], ["Accounts receivable", "7 / 8", "88%", "1 exception", "AR Lead"], ["Accounts payable", "9 / 9", "100%", "Signed off", "AP Lead"], ["Payroll & benefits", "6 / 6", "100%", "Signed off", "People Ops"], ["Deferred revenue", "14 / 15", "93%", "1 exception", "Revenue Accountant"], ["Intercompany", "4 / 5", "80%", "2 exceptions", "Group Finance"],
+  ];
+  const exceptions = [
+    ["IC-2403", "Intercompany hosting charge", "€18.4k", "34 days", "Group Finance", "High"], ["REV-118", "Contract modification review", "€12.0k", "12 days", "Revenue Accountant", "Medium"], ["AR-771", "Unapplied enterprise receipt", "€6.8k", "8 days", "AR Lead", "Medium"], ["FX-029", "Foreign-currency variance", "€3.8k", "4 days", "Controller", "Low"],
+  ];
+  return <section className="view">
+    <div className="page-heading close-heading"><div><p className="eyebrow">RECORD TO REPORT</p><div className="signal-line"><span className="signal-icon positive">✓</span><h1>March close achieved on WD3</h1></div><p className="close-subtitle">Books signed off at 17:40 · target 18:00 · two reconciliation exceptions carried under documented review.</p></div><div className="close-verdict"><span>ON TIME</span><strong>WD3</strong><small>3-month average: WD3.3</small></div></div>
+    <div className="close-metrics"><Metric label="Close completion" value="96%" delta="48 of 50 tasks complete"/><Metric label="Reclasses posted" value="7" delta="€84k gross value"/><Metric label="Late journals" value="2" delta="After WD2 cut-off"/><Metric label="Unreconciled balance" value="€41k" delta="0.3% of balance-sheet value"/><Metric label="Aged items >30 days" value="€18k" delta="1 item · intercompany"/><Metric label="Post-close adjustments" value="1" delta="€6k · below materiality"/></div>
+    <article className="panel close-timeline"><div className="panel-header"><div><p className="eyebrow">CLOSE TIMELINE</p><h2>Critical path to WD3</h2></div><span className="status good">Target achieved</span></div><div className="timeline"><div className="done"><b>WD−2</b><span>Subledgers frozen</span><small>18:10</small></div><div className="done"><b>WD1</b><span>Bank, AP & payroll posted</span><small>16:25</small></div><div className="done"><b>WD2</b><span>Revenue & accrual review</span><small>19:05</small></div><div className="done current"><b>WD3</b><span>Management sign-off</span><small>17:40</small></div><div><b>WD4</b><span>Reporting pack issued</span><small>Planned 12:00</small></div></div></article>
+    <div className="close-grid"><article className="panel reconciliation-panel"><div className="panel-header"><div><p className="eyebrow">BALANCE-SHEET CONTROL</p><h2>Reconciliation status</h2></div><span className="status warn">4 open items</span></div><div className="recon-table"><div className="recon-head"><span>Area</span><span>Accounts</span><span>Complete</span><span>Status</span><span>Owner</span></div>{reconciliations.map(row=><div className="recon-row" key={row[0]}>{row.map((cell,i)=><span key={cell} className={i===3&&cell!=="Signed off"?"exception":""}>{cell}</span>)}</div>)}</div></article>
+      <aside className="panel journal-panel"><div className="panel-header"><div><p className="eyebrow">JOURNAL QUALITY</p><h2>Reclasses and late entries</h2></div></div><div className="journal-chart"><div><span>Revenue mapping</span><i><u style={{width:"43%"}}/></i><b>3</b></div><div><span>Cost centre</span><i><u style={{width:"29%"}}/></i><b>2</b></div><div><span>Accrual timing</span><i><u style={{width:"14%"}}/></i><b>1</b></div><div><span>FX classification</span><i><u style={{width:"14%"}}/></i><b>1</b></div></div><p className="journal-note"><b>Root cause:</b> five of seven reclasses arose from upstream coding. Add mandatory department and contract fields before posting.</p></aside></div>
+    <div className="exceptions-section"><div className="section-heading"><div><p className="eyebrow">OPEN EXCEPTIONS</p><h2>Items carried beyond close</h2></div><span className="as-of">Review at WD5</span></div><div className="exception-table"><div className="exception-head"><span>ID</span><span>Item</span><span>Value</span><span>Age</span><span>Owner</span><span>Risk</span></div>{exceptions.map(row=><div className="exception-row" key={row[0]}>{row.map((cell,i)=><span key={cell} className={i===5?cell.toLowerCase():""}>{cell}</span>)}</div>)}</div></div>
+  </section>;
+}
+
 function Compliance() {
   const tax = { vatRemitted: 286_400, vatClaimed: 94_700, citPaid: 168_000, directSavings: 72_000, indirectSavings: 38_500, subsidyPipeline: 420_000 };
   const risks = [
@@ -153,8 +170,8 @@ export default function Home() {
   const [view, setView] = useState<View>("cockpit");
   const [assumptions, setAssumptions] = useState<ScenarioAssumptions>(presets.base);
   return <main><div className="demo-banner">ILLUSTRATIVE OVERVIEW <span>by Karolis Mazeika (Finance Director)</span></div>
-    <header><button className="brand" onClick={() => setView("cockpit")} aria-label="Go to cockpit"><span>n</span><b>nexos.ai Finance Cockpit</b></button><nav>{(["cockpit","revenue","scenario","compliance"] as View[]).map(item => <button key={item} className={view === item ? "active" : ""} onClick={() => setView(item)}>{item === "cockpit" ? "Executive cockpit" : item === "revenue" ? "Revenue bridge" : item === "scenario" ? "Scenario planner" : "Tax & compliance"}</button>)}</nav><div className="period"><span>Reporting period</span><strong>31 Mar 2026</strong></div></header>
-    {view === "cockpit" && <Cockpit onNavigate={setView} />}{view === "revenue" && <RevenueBridge />}{view === "scenario" && <ScenarioPlanner assumptions={assumptions} setAssumptions={setAssumptions} />}{view === "compliance" && <Compliance />}
-    <footer><span>Fictional illustrative data. Independent interview prototype; not affiliated with or endorsed by nexos.ai.</span><span>EUR · Management view · v1.1</span></footer>
+    <header><button className="brand" onClick={() => setView("cockpit")} aria-label="Go to cockpit"><span>n</span><b>nexos.ai Finance Cockpit</b></button><nav>{(["cockpit","revenue","scenario","close","compliance"] as View[]).map(item => <button key={item} className={view === item ? "active" : ""} onClick={() => setView(item)}>{item === "cockpit" ? "Executive cockpit" : item === "revenue" ? "Revenue bridge" : item === "scenario" ? "Scenario planner" : item === "close" ? "Month-end close" : "Tax & compliance"}</button>)}</nav><div className="period"><span>Reporting period</span><strong>31 Mar 2026</strong></div></header>
+    {view === "cockpit" && <Cockpit onNavigate={setView} />}{view === "revenue" && <RevenueBridge />}{view === "scenario" && <ScenarioPlanner assumptions={assumptions} setAssumptions={setAssumptions} />}{view === "close" && <MonthEndClose />}{view === "compliance" && <Compliance />}
+    <footer><span>Fictional illustrative data. Independent interview prototype; not affiliated with or endorsed by nexos.ai.</span><span>EUR · Management view · v1.2</span></footer>
   </main>;
 }
