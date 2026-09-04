@@ -59,7 +59,7 @@ function fallback(items) {
 async function enrich(items) {
   if (!process.env.GEMINI_API_KEY || !items.length) return { items: fallback(items.slice(0, 6)), mode: "Rules-based official-source monitor" };
   const prompt = `You are a cautious EU finance regulatory analyst supporting a European B2B AI SaaS company. First remove items that are country-specific, sector-specific, or not plausibly relevant to that company. Return ONLY a JSON array of up to 6 remaining items. For every item provide: title, topic (Tax & BEPS, AI & Data, R&D & Grants, or Reporting), date, relevance (High/Medium/Low), status, summary (max 45 words), financeImpact (max 35 words), action (max 25 words), url (retain input). Do not invent effective dates or legal conclusions. Public official-source material only. Inputs: ${JSON.stringify(items)}`;
-  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`, { method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:"application/json",temperature:0.1}}) });
+  const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent", { method:"POST", headers:{"content-type":"application/json","x-goog-api-key":process.env.GEMINI_API_KEY}, body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:"application/json",temperature:0.1}}) });
   if (!response.ok) throw new Error(`Gemini returned ${response.status}`);
   const payload = await response.json();
   const text = payload.candidates?.[0]?.content?.parts?.[0]?.text;
