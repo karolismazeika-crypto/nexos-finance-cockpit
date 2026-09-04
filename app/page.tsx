@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import {
   actuals,
-  contractDemo,
   euro,
   euroCompact,
   getDecisionFlags,
@@ -25,6 +24,13 @@ const cashTrend = [
 type Drilldown = "arr" | "revenue" | "cash" | "burn" | "runway" | "headcount";
 const topClients = [
   ["Enterprise Client A", 620_000], ["Enterprise Client B", 540_000], ["Enterprise Client C", 475_000], ["Enterprise Client D", 420_000], ["Enterprise Client E", 365_000], ["Enterprise Client F", 330_000], ["Enterprise Client G", 290_000], ["Enterprise Client H", 255_000], ["Enterprise Client I", 225_000], ["Enterprise Client J", 205_000],
+] as const;
+const contracts = [
+  { customerName:"Enterprise Client A", subscriptionAmount:120_000, implementationFee:15_000, amountInvoiced:135_000, cashCollected:100_000, elapsedMonths:3, term:"01 Jan — 31 Dec 2026" },
+  { customerName:"Enterprise Client B", subscriptionAmount:180_000, implementationFee:20_000, amountInvoiced:110_000, cashCollected:92_000, elapsedMonths:5, term:"01 Nov 2025 — 31 Oct 2026" },
+  { customerName:"Enterprise Client C", subscriptionAmount:96_000, implementationFee:12_000, amountInvoiced:108_000, cashCollected:108_000, elapsedMonths:6, term:"01 Oct 2025 — 30 Sep 2026" },
+  { customerName:"Enterprise Client D", subscriptionAmount:240_000, implementationFee:0, amountInvoiced:60_000, cashCollected:45_000, elapsedMonths:3, term:"01 Jan — 31 Dec 2026" },
+  { customerName:"Enterprise Client E", subscriptionAmount:150_000, implementationFee:18_000, amountInvoiced:168_000, cashCollected:130_000, elapsedMonths:9, term:"01 Jul 2025 — 30 Jun 2026" },
 ] as const;
 const drilldowns: Record<Drilldown, { title: string; subtitle: string; rows: readonly (readonly [string, string, string])[] }> = {
   arr: { title: "Top 10 customers by ARR", subtitle: "Illustrative concentration view · Top 10 represent 77.6% of ARR", rows: topClients.map(([name, value], i) => [name, euroCompact(value), `${(value / actuals.arr * 100).toFixed(1)}% · ${i < 2 ? "Monitor" : "Stable"}`]) },
@@ -84,18 +90,23 @@ function Cockpit({ onNavigate }: { onNavigate: (view: View) => void }) {
 }
 
 function RevenueBridge() {
-  const bridge = getRevenueBridge(contractDemo, 3);
+  const [contractIndex, setContractIndex] = useState(0);
+  const [stageIndex, setStageIndex] = useState(0);
+  const contract = contracts[contractIndex];
+  const bridge = getRevenueBridge(contract, contract.elapsedMonths);
   const steps = [
-    ["Contracted", bridge.contracted, "Signed annual value"], ["Invoiced", bridge.invoiced, "Annual upfront"], ["Recognised", bridge.recognized, "3 months served"], ["Deferred", bridge.deferred, "Future service"], ["Cash collected", bridge.collected, "Collections to date"],
+    ["Contracted", bridge.contracted, "Signed contract value"], ["Invoiced", bridge.invoiced, "Billing to date"], ["Recognised", bridge.recognized, `${contract.elapsedMonths} months served`], ["Deferred", bridge.deferred, "Future service"], ["Cash collected", bridge.collected, "Collections to date"],
   ] as const;
+  const portfolio = contracts.map(item => { const values=getRevenueBridge(item,item.elapsedMonths); return {name:item.customerName, values:[values.contracted,values.invoiced,values.recognized,values.deferred,values.collected]}; }).sort((a,b)=>b.values[stageIndex]-a.values[stageIndex]);
   return <section className="view">
     <div className="page-heading"><div><p className="eyebrow">REVENUE BRIDGE</p><h1>One contract.<br/><span>Five financial states.</span></h1></div><p className="management-question">How does a commercial contract translate into billing, accounting revenue, deferred revenue and cash?</p></div>
-    <div className="contract-strip"><div><span>Customer</span><strong>{contractDemo.customerName}</strong></div><div><span>Service period</span><strong>01 Jan — 31 Dec 2026</strong></div><div><span>Billing</span><strong>Annual upfront</strong></div><div><span>Collections</span><strong>{euro(contractDemo.cashCollected)} received</strong></div></div>
-    <div className="revenue-layout"><article className="panel bridge-panel"><div className="panel-header"><div><p className="eyebrow">COMMERCIAL TO CASH</p><h2>Contract value flow</h2></div><span className="status neutral">At 31 Mar 2026</span></div>
-      <div className="bridge">{steps.map(([label, value, note], i) => <div className="bridge-step" key={label}><span className="step-index">0{i + 1}</span><p>{label}</p><strong>{euro(value)}</strong><small>{note}</small>{i < steps.length - 1 && <span className="arrow">→</span>}</div>)}</div>
-      <div className="schedule"><div><span>Service elapsed</span><strong>25%</strong></div><div className="schedule-track"><span style={{width:"25%"}} /></div><p>Subscription revenue is recognised straight-line over the 12-month service period in this simplified demonstration.</p></div>
+    <div className="contract-selector"><span>CONTRACT PORTFOLIO</span>{contracts.map((item,i)=><button key={item.customerName} className={contractIndex===i?"active":""} onClick={()=>setContractIndex(i)}><b>0{i+1}</b>{item.customerName.replace("Enterprise ","")}</button>)}</div>
+    <div className="contract-strip"><div><span>Customer</span><strong>{contract.customerName}</strong></div><div><span>Service period</span><strong>{contract.term}</strong></div><div><span>Billing</span><strong>{contract.amountInvoiced >= contract.subscriptionAmount ? "Annual upfront" : "Quarterly / staged"}</strong></div><div><span>Collections</span><strong>{euro(contract.cashCollected)} received</strong></div></div>
+    <article className="panel bridge-panel"><div className="panel-header"><div><p className="eyebrow">COMMERCIAL TO CASH</p><h2>Contract value flow</h2></div><span className="status neutral">At 31 Mar 2026</span></div>
+      <div className="bridge">{steps.map(([label, value, note], i) => <button className={`bridge-step ${stageIndex===i?"selected":""}`} key={label} onClick={()=>setStageIndex(i)}><span className="step-index">0{i + 1}</span><p>{label}</p><strong>{euro(value)}</strong><small>{note}</small><em>View top 5 ↓</em>{i < steps.length - 1 && <span className="arrow">→</span>}</button>)}</div>
+      <div className="schedule"><div><span>Service elapsed</span><strong>{Math.round(contract.elapsedMonths/12*100)}%</strong></div><div className="schedule-track"><span style={{width:`${contract.elapsedMonths/12*100}%`}} /></div><p>Subscription revenue is recognised straight-line over the 12-month service period in this simplified demonstration.</p></div>
     </article>
-    <aside className="why-panel"><p className="eyebrow">WHY?</p><h2>Revenue is not cash</h2><p>Upfront billing creates a receivable and a contract liability. Revenue emerges as the service is delivered—not when an invoice is sent.</p><dl><div><dt>Subscription</dt><dd>€10,000 recognised monthly</dd></div><div><dt>Outstanding AR</dt><dd>{euro(bridge.invoiced - bridge.collected)}</dd></div></dl><div className="review-note"><strong>Judgement required</strong><p>The €15,000 implementation fee depends on whether setup is a distinct performance obligation. It is flagged for review, not automatically recognised.</p></div><small>Illustrative learning material only. Not accounting advice.</small></aside></div>
+    <article className="drilldown-panel revenue-drilldown"><div className="drilldown-title"><div><p className="eyebrow">PORTFOLIO DRILL-DOWN · STAGE 0{stageIndex+1}</p><h2>Top 5 contracts by {steps[stageIndex][0].toLowerCase()} value</h2><span>Click any stage above to change the ranking</span></div><strong>{euro(portfolio.reduce((sum,item)=>sum+item.values[stageIndex],0))}</strong></div><div className="portfolio-bars">{portfolio.map((item,i)=>{const max=portfolio[0].values[stageIndex]; return <div key={item.name}><span>0{i+1}</span><b>{item.name}</b><i><u style={{width:`${item.values[stageIndex]/max*100}%`}}/></i><strong>{euro(item.values[stageIndex])}</strong></div>})}</div></article>
   </section>;
 }
 
@@ -141,7 +152,7 @@ function Compliance() {
 export default function Home() {
   const [view, setView] = useState<View>("cockpit");
   const [assumptions, setAssumptions] = useState<ScenarioAssumptions>(presets.base);
-  return <main><div className="demo-banner">ILLUSTRATIVE FICTIONAL DATA <span>Carolis Mazika</span></div>
+  return <main><div className="demo-banner">ILLUSTRATIVE OVERVIEW <span>by Karolis Mazeika (Finance Director)</span></div>
     <header><button className="brand" onClick={() => setView("cockpit")} aria-label="Go to cockpit"><span>n</span><b>nexos.ai Finance Cockpit</b></button><nav>{(["cockpit","revenue","scenario","compliance"] as View[]).map(item => <button key={item} className={view === item ? "active" : ""} onClick={() => setView(item)}>{item === "cockpit" ? "Executive cockpit" : item === "revenue" ? "Revenue bridge" : item === "scenario" ? "Scenario planner" : "Tax & compliance"}</button>)}</nav><div className="period"><span>Reporting period</span><strong>31 Mar 2026</strong></div></header>
     {view === "cockpit" && <Cockpit onNavigate={setView} />}{view === "revenue" && <RevenueBridge />}{view === "scenario" && <ScenarioPlanner assumptions={assumptions} setAssumptions={setAssumptions} />}{view === "compliance" && <Compliance />}
     <footer><span>Fictional illustrative data. Independent interview prototype; not affiliated with or endorsed by nexos.ai.</span><span>EUR · Management view · v1.0</span></footer>
