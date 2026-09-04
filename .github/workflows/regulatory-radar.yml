@@ -1,0 +1,37 @@
+name: Update EU regulatory radar
+
+on:
+  push:
+    paths:
+      - "scripts/update-regulatory-radar.mjs"
+      - ".github/workflows/regulatory-radar.yml"
+  schedule:
+    - cron: "20 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-radar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Discover and assess EU developments
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node scripts/update-regulatory-radar.mjs
+      - name: Publish updated radar data
+        run: |
+          if git diff --quiet -- app/data/regulatory-radar.json; then
+            echo "No regulatory data changes"
+            exit 0
+          fi
+          git config user.name "regulatory-radar-bot"
+          git config user.email "regulatory-radar-bot@users.noreply.github.com"
+          git add app/data/regulatory-radar.json
+          git commit -m "Update EU regulatory radar"
+          git push

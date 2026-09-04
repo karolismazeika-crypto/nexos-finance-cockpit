@@ -11,8 +11,9 @@ import {
   presets,
   type ScenarioAssumptions,
 } from "./lib/finance";
+import regulatoryRadar from "./data/regulatory-radar.json";
 
-type View = "cockpit" | "revenue" | "scenario" | "close" | "compliance";
+type View = "cockpit" | "revenue" | "scenario" | "close" | "compliance" | "regulatory";
 
 const revenueTrend = [
   ["Oct", 315], ["Nov", 328], ["Dec", 342], ["Jan", 351], ["Feb", 366], ["Mar", 382],
@@ -166,6 +167,24 @@ function Compliance() {
   </section>;
 }
 
+type RegulatoryItem = (typeof regulatoryRadar.items)[number];
+
+function RegulatoryRadar() {
+  const topics = ["All", ...Array.from(new Set(regulatoryRadar.items.map(item => item.topic)))] as string[];
+  const [topic, setTopic] = useState("All");
+  const visible = topic === "All" ? regulatoryRadar.items : regulatoryRadar.items.filter(item => item.topic === topic);
+  const high = regulatoryRadar.items.filter(item => item.relevance === "High").length;
+  return <section className="view">
+    <div className="page-heading radar-heading"><div><p className="eyebrow">EU REGULATORY RADAR</p><h1>Discover change.<br/><span>Translate the impact.</span></h1></div><div className="agent-status"><span className="agent-pulse"/><div><b>Discovery agent active</b><small>Last checked {regulatoryRadar.lastChecked} · EUR-Lex</small></div></div></div>
+    <div className="radar-note"><strong>Official-source monitor</strong><span>Daily screening of EU legislation and Commission proposals. AI-generated impact assessments are informational and require validation by qualified legal or tax advisers.</span></div>
+    <div className="radar-summary"><article><span>Relevant developments</span><strong>{regulatoryRadar.items.length}</strong><small>Current monitored set</small></article><article><span>High relevance</span><strong>{high}</strong><small>Finance review required</small></article><article><span>Source coverage</span><strong>3</strong><small>Legislation · proposals · OJ L</small></article><article><span>Next automated scan</span><strong>24h</strong><small>GitHub scheduled workflow</small></article></div>
+    <div className="radar-toolbar"><div><p className="eyebrow">DISCOVERY QUEUE</p><h2>Developments ranked for finance</h2></div><div className="topic-filters" aria-label="Filter regulatory developments">{topics.map(value=><button key={value} className={topic===value?"active":""} onClick={()=>setTopic(value)}>{value}</button>)}</div></div>
+    <div className="radar-list">{visible.map((item: RegulatoryItem, index: number)=><article className="radar-card" key={item.url}><div className="radar-rank">{String(index+1).padStart(2,"0")}</div><div className="radar-main"><div className="radar-meta"><span>{item.topic}</span><time>{item.date}</time><em className={item.relevance.toLowerCase()}>{item.relevance} relevance</em></div><h3>{item.title}</h3><p>{item.summary}</p><div className="impact-box"><span>FINANCE IMPACT</span><strong>{item.financeImpact}</strong></div></div><aside><span>STATUS</span><b>{item.status}</b><span>ACTION</span><p>{item.action}</p><a href={item.url} target="_blank" rel="noopener noreferrer">Open official source ↗</a></aside></article>)}</div>
+    {visible.length === 0 && <div className="radar-empty">No current developments match this topic.</div>}
+    <div className="agent-method"><div><b>01 · Discover</b><p>Read official EUR-Lex feeds and remove duplicates.</p></div><div><b>02 · Classify</b><p>Score tax, BEPS, AI, data, grants and reporting relevance.</p></div><div><b>03 · Translate</b><p>Gemini drafts concise finance implications and actions.</p></div><div><b>04 · Govern</b><p>Human review remains required before any decision.</p></div></div>
+  </section>;
+}
+
 export default function Home() {
   const [view, setView] = useState<View>("cockpit");
   const [assumptions, setAssumptions] = useState<ScenarioAssumptions>(presets.base);
@@ -173,9 +192,9 @@ export default function Home() {
     <header><button className="brand" onClick={() => setView("cockpit")} aria-label="Go to cockpit"><span>n</span><b>nexos.ai Finance Cockpit</b></button><nav aria-label="Finance cockpit sections">
       <div className="nav-group"><span className="nav-group-label">FP&amp;A</span><div className="nav-items">{(["cockpit","revenue","scenario"] as View[]).map(item => <button key={item} className={view === item ? "active" : ""} onClick={() => setView(item)}>{item === "cockpit" ? "Executive cockpit" : item === "revenue" ? "Revenue bridge" : "Scenario planner"}</button>)}</div></div>
       <div className="nav-group"><span className="nav-group-label">Record to Report</span><div className="nav-items"><button className={view === "close" ? "active" : ""} onClick={() => setView("close")}>Month-end close</button></div></div>
-      <div className="nav-group"><span className="nav-group-label">Statutory &amp; Tax</span><div className="nav-items"><button className={view === "compliance" ? "active" : ""} onClick={() => setView("compliance")}>Tax &amp; compliance</button></div></div>
+      <div className="nav-group"><span className="nav-group-label">Statutory &amp; Tax</span><div className="nav-items"><button className={view === "compliance" ? "active" : ""} onClick={() => setView("compliance")}>Tax & compliance</button><button className={view === "regulatory" ? "active" : ""} onClick={() => setView("regulatory")}>EU regulatory radar</button></div></div>
     </nav><div className="period"><span>Reporting period</span><strong>31 Mar 2026</strong></div></header>
-    {view === "cockpit" && <Cockpit onNavigate={setView} />}{view === "revenue" && <RevenueBridge />}{view === "scenario" && <ScenarioPlanner assumptions={assumptions} setAssumptions={setAssumptions} />}{view === "close" && <MonthEndClose />}{view === "compliance" && <Compliance />}
+    {view === "cockpit" && <Cockpit onNavigate={setView} />}{view === "revenue" && <RevenueBridge />}{view === "scenario" && <ScenarioPlanner assumptions={assumptions} setAssumptions={setAssumptions} />}{view === "close" && <MonthEndClose />}{view === "compliance" && <Compliance />}{view === "regulatory" && <RegulatoryRadar />}
     <footer><span>Fictional illustrative data. Independent interview prototype; not affiliated with or endorsed by nexos.ai.</span><span>EUR · Management view · v1.2</span></footer>
   </main>;
 }
