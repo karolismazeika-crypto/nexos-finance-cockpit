@@ -13,7 +13,7 @@ import {
   type ScenarioAssumptions,
 } from "./lib/finance";
 
-type View = "cockpit" | "revenue" | "scenario";
+type View = "cockpit" | "revenue" | "scenario" | "compliance";
 
 const revenueTrend = [
   ["Oct", 315], ["Nov", 328], ["Dec", 342], ["Jan", 351], ["Feb", 366], ["Mar", 382],
@@ -102,12 +102,30 @@ function ScenarioPlanner({ assumptions, setAssumptions }: { assumptions: Scenari
   </section>;
 }
 
+function Compliance() {
+  const tax = { vatRemitted: 286_400, vatClaimed: 94_700, citPaid: 168_000, directSavings: 72_000, indirectSavings: 38_500 };
+  const risks = [
+    { level: "high", title: "Group perimeter & Pillar Two scope", owner: "Tax lead · 30 Apr", detail: "Confirm ultimate ownership, consolidated revenue and constituent entities. The €750m threshold assessment cannot be concluded from public information." },
+    { level: "medium", title: "Related-party service charges", owner: "Finance Director · 15 Apr", detail: "Refresh transfer-pricing support for shared technology, management and support services; evidence benefit received and arm’s-length pricing." },
+    { level: "medium", title: "Permanent establishment exposure", owner: "Legal & Tax · 31 May", detail: "Map where commercial authority, remote work and service delivery occur; document decision rights and contracting practice by jurisdiction." },
+    { level: "low", title: "VAT place-of-supply evidence", owner: "Controller · Monthly", detail: "Retain customer status, location evidence and invoice tax codes for cross-border B2B digital services." },
+  ];
+  return <section className="view">
+    <div className="page-heading"><div><p className="eyebrow">TAX & COMPLIANCE</p><h1>Know the exposure.<br/><span>Evidence the position.</span></h1></div><p className="management-question">Are tax filings controlled, savings defensible, and cross-border risks visible before they become liabilities?</p></div>
+    <div className="compliance-note"><strong>Illustrative control view</strong><span>All values and statuses are fictional. Group ownership, tax residency and Pillar Two scope require verified legal-entity data.</span></div>
+    <div className="tax-metrics"><Metric label="VAT remitted YTD" value={euroCompact(tax.vatRemitted)} delta="Output less recoverable input VAT" info="Illustrative net VAT paid to tax authorities year to date."/><Metric label="Input VAT claimed YTD" value={euroCompact(tax.vatClaimed)} delta="24.9% of input VAT reviewed" info="Illustrative recoverable VAT supported by qualifying invoices."/><Metric label="Corporate income tax paid" value={euroCompact(tax.citPaid)} delta="2025 final + 2026 advances"/><Metric label="Direct tax savings" value={euroCompact(tax.directSavings)} delta="R&D and eligible cost review"/><Metric label="Indirect tax savings" value={euroCompact(tax.indirectSavings)} delta="VAT recovery corrections"/></div>
+    <div className="compliance-grid"><article className="panel tax-waterfall"><div className="panel-header"><div><p className="eyebrow">VAT CONTROL</p><h2>Quarter-to-date VAT movement</h2></div><span className="status good">Reconciled</span></div><div className="waterfall"><div><span>Output VAT</span><strong>€381.1k</strong><i style={{width:"100%"}}/></div><div><span>Input VAT claimed</span><strong>(€94.7k)</strong><i className="claim" style={{width:"25%"}}/></div><div className="net"><span>Net remitted</span><strong>€286.4k</strong><i style={{width:"75%"}}/></div></div><div className="control-evidence"><span><b>100%</b> ledger-to-return tie-out</span><span><b>12</b> exceptions reviewed</span><span><b>0</b> overdue filings</span></div></article>
+      <article className="panel tax-calendar"><div className="panel-header"><div><p className="eyebrow">FILING CALENDAR</p><h2>Next obligations</h2></div><span className="status neutral">4 upcoming</span></div><div className="calendar-list"><div><time>25 APR</time><p><b>VAT return</b><span>March 2026 · Prepared</span></p><em className="ready">Ready</em></div><div><time>15 MAY</time><p><b>Advance CIT</b><span>Q2 instalment · Forecast</span></p><em>Open</em></div><div><time>31 MAY</time><p><b>Transfer pricing file</b><span>Evidence refresh · In review</span></p><em className="review">Review</em></div><div><time>15 JUN</time><p><b>Annual CIT return</b><span>FY2025 · Draft</span></p><em>Open</em></div></div></article></div>
+    <div className="beps-section"><div className="section-heading"><div><p className="eyebrow">BEPS RISK REGISTER</p><h2>Cross-border positions requiring evidence</h2></div><span className="beps-score"><b>2</b> priority reviews</span></div><div className="risk-table"><div className="risk-head"><span>Risk area</span><span>Control assessment</span><span>Owner / due</span><span>Status</span></div>{risks.map(r=><div className="risk-row" key={r.title}><span><i className={`risk-dot ${r.level}`}/><b>{r.title}</b></span><p>{r.detail}</p><span>{r.owner}</span><em className={r.level}>{r.level}</em></div>)}</div><div className="beps-guidance"><div><strong>Pillar Two screen</strong><p>First gate: verify whether consolidated group revenue meets the €750m threshold and whether the entity sits within the relevant consolidated perimeter.</p></div><div><strong>Transfer pricing</strong><p>Keep intercompany agreements, functional analysis, benefit evidence and pricing support aligned with where people, risks and value creation actually sit.</p></div><div><strong>Decision rule</strong><p>No green status without evidence. Escalate uncertain residency, permanent establishment, withholding tax or related-party positions to qualified advisers.</p></div></div></div>
+  </section>;
+}
+
 export default function Home() {
   const [view, setView] = useState<View>("cockpit");
   const [assumptions, setAssumptions] = useState<ScenarioAssumptions>(presets.base);
   return <main><div className="demo-banner">ILLUSTRATIVE FICTIONAL DATA <span>Independent interview prototype</span></div>
-    <header><button className="brand" onClick={() => setView("cockpit")} aria-label="Go to cockpit"><span>n</span><b>finance cockpit</b></button><nav>{(["cockpit","revenue","scenario"] as View[]).map(item => <button key={item} className={view === item ? "active" : ""} onClick={() => setView(item)}>{item === "cockpit" ? "Executive cockpit" : item === "revenue" ? "Revenue bridge" : "Scenario planner"}</button>)}</nav><div className="period"><span>Reporting period</span><strong>31 Mar 2026</strong></div></header>
-    {view === "cockpit" && <Cockpit onNavigate={setView} />}{view === "revenue" && <RevenueBridge />}{view === "scenario" && <ScenarioPlanner assumptions={assumptions} setAssumptions={setAssumptions} />}
+    <header><button className="brand" onClick={() => setView("cockpit")} aria-label="Go to cockpit"><span>n</span><b>finance cockpit</b></button><nav>{(["cockpit","revenue","scenario","compliance"] as View[]).map(item => <button key={item} className={view === item ? "active" : ""} onClick={() => setView(item)}>{item === "cockpit" ? "Executive cockpit" : item === "revenue" ? "Revenue bridge" : item === "scenario" ? "Scenario planner" : "Tax & compliance"}</button>)}</nav><div className="period"><span>Reporting period</span><strong>31 Mar 2026</strong></div></header>
+    {view === "cockpit" && <Cockpit onNavigate={setView} />}{view === "revenue" && <RevenueBridge />}{view === "scenario" && <ScenarioPlanner assumptions={assumptions} setAssumptions={setAssumptions} />}{view === "compliance" && <Compliance />}
     <footer><span>Fictional illustrative data. Independent interview prototype; not affiliated with or endorsed by nexos.ai.</span><span>EUR · Management view · v1.0</span></footer>
   </main>;
 }
