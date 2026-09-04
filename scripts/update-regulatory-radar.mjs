@@ -77,7 +77,7 @@ try {
     result = await enrich(discovered);
   } catch (error) {
     console.warn(`Gemini unavailable; using deterministic fallback: ${error.message}`);
-    result = { items: fallback(discovered.slice(0, 6)), mode: "Rules-based fallback · Gemini unavailable" };
+    result = { items: fallback(discovered.slice(0, 6)), mode: `Rules-based fallback · ${error.message}` };
   }
   const { items } = result;
   if (!items.length) throw new Error("No relevant publications returned");
