@@ -22,15 +22,28 @@ const cashTrend = [
   ["Oct", 6.25], ["Nov", 6.02], ["Dec", 5.78], ["Jan", 5.51], ["Feb", 5.25], ["Mar", 5.0],
 ] as const;
 
+type Drilldown = "arr" | "revenue" | "cash" | "burn" | "runway" | "headcount";
+const topClients = [
+  ["Enterprise Client A", 620_000], ["Enterprise Client B", 540_000], ["Enterprise Client C", 475_000], ["Enterprise Client D", 420_000], ["Enterprise Client E", 365_000], ["Enterprise Client F", 330_000], ["Enterprise Client G", 290_000], ["Enterprise Client H", 255_000], ["Enterprise Client I", 225_000], ["Enterprise Client J", 205_000],
+] as const;
+const drilldowns: Record<Drilldown, { title: string; subtitle: string; rows: readonly (readonly [string, string, string])[] }> = {
+  arr: { title: "Top 10 customers by ARR", subtitle: "Illustrative concentration view · Top 10 represent 77.6% of ARR", rows: topClients.map(([name, value], i) => [name, euroCompact(value), `${(value / actuals.arr * 100).toFixed(1)}% · ${i < 2 ? "Monitor" : "Stable"}`]) },
+  revenue: { title: "Top 5 recognised revenue contributors", subtitle: "Year-to-date · fictional customer mix", rows: topClients.slice(0, 5).map(([name, value]) => [name, euroCompact(value * .44), "Recognised YTD"]) },
+  cash: { title: "Cash sources and restrictions", subtitle: "€5.0m closing balance", rows: [["Equity funding", "€3.20m", "Unrestricted"], ["Customer collections", "€1.35m", "Operating cash"], ["R&D grant advances", "€0.25m", "Restricted"], ["Interest & other", "€0.20m", "Unrestricted"]] },
+  burn: { title: "Monthly net burn drivers", subtitle: "March 2026 · click-through cost attribution", rows: [["Payroll & benefits", "€438k", "58% of gross outflow"], ["AI infrastructure", "€142k", "19%"], ["Sales & marketing", "€91k", "12%"], ["G&A and professional fees", "€57k", "8%"], ["Other operating costs", "€25k", "3%"], ["Less: cash collections", "(€503k)", "Net burn €250k"]] },
+  runway: { title: "Runway sensitivity", subtitle: "Current cash divided by net monthly burn", rows: [["Current run-rate", "20.0 mo", "€250k burn"], ["10% lower collections", "17.7 mo", "€283k burn"], ["Hiring delayed 3 months", "22.4 mo", "€223k burn"]] },
+  headcount: { title: "Headcount by function", subtitle: "70 people · 15 planned hires", rows: [["Engineering & product", "42", "+8 planned"], ["Sales & marketing", "13", "+4 planned"], ["Operations & support", "9", "+2 planned"], ["Finance, legal & people", "6", "+1 planned"]] },
+};
+
 function Info({ text }: { text: string }) {
   return <span className="info" title={text} aria-label={text}>i</span>;
 }
 
-function Metric({ label, value, delta, info }: { label: string; value: string; delta?: string; info?: string }) {
+function Metric({ label, value, delta, info, onClick, active }: { label: string; value: string; delta?: string; info?: string; onClick?: () => void; active?: boolean }) {
+  const content = <><div className="metric-label">{label}{info && <Info text={info} />}</div><div className="metric-value">{value}</div>{delta && <div className="metric-delta">{delta}</div>}{onClick && <span className="open-detail">View detail →</span>}</>;
+  if (onClick) return <button className={`metric-card metric-button ${active ? "selected" : ""}`} onClick={onClick}>{content}</button>;
   return <article className="metric-card">
-    <div className="metric-label">{label}{info && <Info text={info} />}</div>
-    <div className="metric-value">{value}</div>
-    {delta && <div className="metric-delta">{delta}</div>}
+    {content}
   </article>;
 }
 
@@ -47,16 +60,19 @@ function Bars({ data, unit }: { data: readonly (readonly [string, number])[]; un
 
 function Cockpit({ onNavigate }: { onNavigate: (view: View) => void }) {
   const flags = getDecisionFlags(actuals);
+  const [detail, setDetail] = useState<Drilldown>("arr");
+  const selected = drilldowns[detail];
   return <section className="view">
-    <div className="page-heading"><div><p className="eyebrow">EXECUTIVE COCKPIT</p><h1>Growth is on track.<br/><span>Cash needs attention.</span></h1></div><p className="management-question">Are we on plan, how much runway do we have, and where does leadership need to act?</p></div>
+    <div className="page-heading executive-heading"><div><p className="eyebrow">EXECUTIVE COCKPIT</p><div className="signal-line"><span className="signal-icon positive">✓</span><h1>Growth is on track</h1></div><div className="signal-line"><span className="signal-icon attention">!</span><h1>Cash needs attention</h1></div></div><div className="executive-summary"><p className="eyebrow">EXECUTIVE ASSESSMENT</p><strong>Commercial momentum remains positive, with ARR up 8.2% quarter on quarter.</strong><p>Revenue is 4% below plan and collections have softened, leaving runway at 20 months—still above the 18-month threshold, but close enough to stage hiring and escalate overdue enterprise receivables.</p></div></div>
     <div className="metrics-grid">
-      <Metric label="ARR" value={euroCompact(actuals.arr)} delta="↑ 8.2% vs prior quarter" info="Annual recurring revenue at the current run rate." />
-      <Metric label="Recognised revenue YTD" value={euroCompact(actuals.recognizedRevenueYtd)} delta="96% of plan" />
-      <Metric label="Cash balance" value={euroCompact(actuals.cashBalance)} delta="€0.3m below plan" />
-      <Metric label="Monthly net burn" value={euroCompact(actuals.monthlyNetBurn)} delta="↑ €24k vs prior month" info="Cash outflows less cash inflows for the month." />
-      <Metric label="Runway" value={`${actuals.cashBalance / actuals.monthlyNetBurn} mo`} delta="Planning threshold: 18 mo" info="Cash balance divided by current monthly net burn." />
-      <Metric label="Headcount" value={`${actuals.headcount}`} delta="+7 since January" />
+      <Metric label="ARR" value={euroCompact(actuals.arr)} delta="↑ 8.2% vs prior quarter" info="Annual recurring revenue at the current run rate." onClick={() => setDetail("arr")} active={detail === "arr"}/>
+      <Metric label="Recognised revenue YTD" value={euroCompact(actuals.recognizedRevenueYtd)} delta="96% of plan" onClick={() => setDetail("revenue")} active={detail === "revenue"}/>
+      <Metric label="Cash balance" value={euroCompact(actuals.cashBalance)} delta="€0.3m below plan" onClick={() => setDetail("cash")} active={detail === "cash"}/>
+      <Metric label="Monthly net burn" value={euroCompact(actuals.monthlyNetBurn)} delta="↑ €24k vs prior month" info="Cash outflows less cash inflows for the month." onClick={() => setDetail("burn")} active={detail === "burn"}/>
+      <Metric label="Runway" value={`${actuals.cashBalance / actuals.monthlyNetBurn} mo`} delta="Planning threshold: 18 mo" info="Cash balance divided by current monthly net burn." onClick={() => setDetail("runway")} active={detail === "runway"}/>
+      <Metric label="Headcount" value={`${actuals.headcount}`} delta="+7 since January" onClick={() => setDetail("headcount")} active={detail === "headcount"}/>
     </div>
+    <article className="drilldown-panel"><div className="drilldown-title"><div><p className="eyebrow">KPI DRILL-DOWN</p><h2>{selected.title}</h2><span>{selected.subtitle}</span></div><span className="live-tag">Selected: {detail}</span></div><div className="drilldown-list">{selected.rows.map(([name,value,note],i)=><div key={name}><span className="rank">{String(i+1).padStart(2,"0")}</span><b>{name}</b><strong>{value}</strong><em>{note}</em></div>)}</div></article>
     <div className="chart-grid">
       <article className="panel"><div className="panel-header"><div><p className="eyebrow">COMMERCIAL MOMENTUM</p><h2>Monthly recognised revenue</h2></div><span className="status good">+21% over 6 mo</span></div><Bars data={revenueTrend} unit="k" /></article>
       <article className="panel"><div className="panel-header"><div><p className="eyebrow">LIQUIDITY</p><h2>Cash balance</h2></div><span className="status warn">20 months runway</span></div><Bars data={cashTrend} unit="m" /></article>
@@ -88,14 +104,16 @@ function ScenarioPlanner({ assumptions, setAssumptions }: { assumptions: Scenari
   const base = modelScenario(presets.base);
   const set = (key: keyof ScenarioAssumptions, value: number) => setAssumptions({ ...assumptions, [key]: value });
   return <section className="view">
-    <div className="page-heading"><div><p className="eyebrow">SCENARIO PLANNER</p><h1>Make the trade-off<br/><span>visible.</span></h1></div><p className="management-question">If growth, hiring or infrastructure costs change, what happens to cash and runway?</p></div>
+    <div className="page-heading"><div><p className="eyebrow">SCENARIO PLANNER</p><h1>Make the trade-off<br/><span>visible.</span></h1></div><p className="management-question">How do growth, hiring, AI infrastructure and R&D investment interact—and how much runway could confirmed grant support protect?</p></div>
     <div className="scenario-layout"><aside className="controls-panel"><div className="preset-row">{Object.entries(presets).map(([name, values]) => <button key={name} className={JSON.stringify(values) === JSON.stringify(assumptions) ? "active" : ""} onClick={() => setAssumptions(values)}>{name[0].toUpperCase()+name.slice(1)}</button>)}</div>
       <label><span><b>Revenue growth</b><output>{assumptions.revenueGrowthPct}%</output></span><input type="range" min="0" max="60" value={assumptions.revenueGrowthPct} onChange={e => set("revenueGrowthPct", +e.target.value)} /></label>
       <label><span><b>Planned hires</b><output>{assumptions.plannedHires}</output></span><input type="range" min="0" max="35" value={assumptions.plannedHires} onChange={e => set("plannedHires", +e.target.value)} /></label>
       <label><span><b>Infrastructure cost growth</b><output>{assumptions.infrastructureGrowthPct}%</output></span><input type="range" min="0" max="50" value={assumptions.infrastructureGrowthPct} onChange={e => set("infrastructureGrowthPct", +e.target.value)} /></label>
+      <label><span><b>R&D investment</b><output>{euroCompact(assumptions.rdInvestment)}</output></span><input type="range" min="250000" max="2000000" step="50000" value={assumptions.rdInvestment} onChange={e => set("rdInvestment", +e.target.value)} /></label>
+      <label><span><b>Expected grant coverage</b><output>{assumptions.grantCoveragePct}%</output></span><input type="range" min="0" max="50" step="5" value={assumptions.grantCoveragePct} onChange={e => set("grantCoveragePct", +e.target.value)} /></label>
       <button className="reset" onClick={() => setAssumptions(presets.base)}>↺ Reset demo</button>
     </aside>
-    <div className="scenario-results"><div className="result-grid"><Metric label="Forecast annual revenue" value={euroCompact(output.forecastRevenue)} delta={`${assumptions.revenueGrowthPct}% growth`} /><Metric label="Forecast payroll" value={euroCompact(output.forecastPayroll)} delta={`${assumptions.plannedHires} planned hires`} /><Metric label="Infrastructure cost" value={euroCompact(output.forecastInfrastructureCost)} delta={`${assumptions.infrastructureGrowthPct}% growth`} /><Metric label="Monthly burn" value={euroCompact(output.forecastMonthlyBurn)} delta={`${output.forecastMonthlyBurn > base.forecastMonthlyBurn ? "↑" : "↓"} ${euroCompact(Math.abs(output.forecastMonthlyBurn - base.forecastMonthlyBurn))} vs base`} /></div>
+    <div className="scenario-results"><div className="result-grid scenario-output-grid"><Metric label="Forecast annual revenue" value={euroCompact(output.forecastRevenue)} delta={`${assumptions.revenueGrowthPct}% growth`} /><Metric label="Forecast payroll" value={euroCompact(output.forecastPayroll)} delta={`${assumptions.plannedHires} planned hires`} /><Metric label="Infrastructure cost" value={euroCompact(output.forecastInfrastructureCost)} delta={`${assumptions.infrastructureGrowthPct}% growth`} /><Metric label="Net R&D investment" value={euroCompact(output.netRdInvestment)} delta={`${euroCompact(output.grantFunding)} grant offset`} /><Metric label="Expected grant funding" value={euroCompact(output.grantFunding)} delta="Unconfirmed pipeline" /><Metric label="Monthly burn" value={euroCompact(output.forecastMonthlyBurn)} delta={`${output.forecastMonthlyBurn > base.forecastMonthlyBurn ? "↑" : "↓"} ${euroCompact(Math.abs(output.forecastMonthlyBurn - base.forecastMonthlyBurn))} vs base`} /></div>
       <article className="runway-card"><div><p className="eyebrow">FORECAST RUNWAY</p><strong>{Number.isFinite(output.runwayMonths) ? `${output.runwayMonths.toFixed(1)} months` : "Cash generative / N/A"}</strong><span>Ending cash after 12 months: {euroCompact(output.forecastEndingCash)}</span></div><div className="runway-compare"><span>BASE <b>{base.runwayMonths.toFixed(1)} mo</b></span><span>SCENARIO <b>{Number.isFinite(output.runwayMonths) ? `${output.runwayMonths.toFixed(1)} mo` : "N/A"}</b></span></div></article>
       <article className="narrative"><span className="pulse"/><div><p className="eyebrow">MANAGEMENT IMPLICATION</p><h3>{output.narrative}</h3></div></article>
     </div></div>
@@ -103,7 +121,7 @@ function ScenarioPlanner({ assumptions, setAssumptions }: { assumptions: Scenari
 }
 
 function Compliance() {
-  const tax = { vatRemitted: 286_400, vatClaimed: 94_700, citPaid: 168_000, directSavings: 72_000, indirectSavings: 38_500 };
+  const tax = { vatRemitted: 286_400, vatClaimed: 94_700, citPaid: 168_000, directSavings: 72_000, indirectSavings: 38_500, subsidyPipeline: 420_000 };
   const risks = [
     { level: "high", title: "Group perimeter & Pillar Two scope", owner: "Tax lead · 30 Apr", detail: "Confirm ultimate ownership, consolidated revenue and constituent entities. The €750m threshold assessment cannot be concluded from public information." },
     { level: "medium", title: "Related-party service charges", owner: "Finance Director · 15 Apr", detail: "Refresh transfer-pricing support for shared technology, management and support services; evidence benefit received and arm’s-length pricing." },
@@ -113,7 +131,7 @@ function Compliance() {
   return <section className="view">
     <div className="page-heading"><div><p className="eyebrow">TAX & COMPLIANCE</p><h1>Know the exposure.<br/><span>Evidence the position.</span></h1></div><p className="management-question">Are tax filings controlled, savings defensible, and cross-border risks visible before they become liabilities?</p></div>
     <div className="compliance-note"><strong>Illustrative control view</strong><span>All values and statuses are fictional. Group ownership, tax residency and Pillar Two scope require verified legal-entity data.</span></div>
-    <div className="tax-metrics"><Metric label="VAT remitted YTD" value={euroCompact(tax.vatRemitted)} delta="Output less recoverable input VAT" info="Illustrative net VAT paid to tax authorities year to date."/><Metric label="Input VAT claimed YTD" value={euroCompact(tax.vatClaimed)} delta="24.9% of input VAT reviewed" info="Illustrative recoverable VAT supported by qualifying invoices."/><Metric label="Corporate income tax paid" value={euroCompact(tax.citPaid)} delta="2025 final + 2026 advances"/><Metric label="Direct tax savings" value={euroCompact(tax.directSavings)} delta="R&D and eligible cost review"/><Metric label="Indirect tax savings" value={euroCompact(tax.indirectSavings)} delta="VAT recovery corrections"/></div>
+    <div className="tax-metrics"><Metric label="VAT remitted YTD" value={euroCompact(tax.vatRemitted)} delta="Output less recoverable input VAT" info="Illustrative net VAT paid to tax authorities year to date."/><Metric label="Input VAT claimed YTD" value={euroCompact(tax.vatClaimed)} delta="24.9% of input VAT reviewed" info="Illustrative recoverable VAT supported by qualifying invoices."/><Metric label="Corporate income tax paid" value={euroCompact(tax.citPaid)} delta="2025 final + 2026 advances"/><Metric label="Direct tax savings" value={euroCompact(tax.directSavings)} delta="R&D and eligible cost review"/><Metric label="Indirect tax savings" value={euroCompact(tax.indirectSavings)} delta="VAT recovery corrections"/><Metric label="R&D subsidy pipeline" value={euroCompact(tax.subsidyPipeline)} delta="Applied · not yet awarded" info="Illustrative non-tax government and EU support under application or assessment. Excluded from cash until confirmed."/></div>
     <div className="compliance-grid"><article className="panel tax-waterfall"><div className="panel-header"><div><p className="eyebrow">VAT CONTROL</p><h2>Quarter-to-date VAT movement</h2></div><span className="status good">Reconciled</span></div><div className="waterfall"><div><span>Output VAT</span><strong>€381.1k</strong><i style={{width:"100%"}}/></div><div><span>Input VAT claimed</span><strong>(€94.7k)</strong><i className="claim" style={{width:"25%"}}/></div><div className="net"><span>Net remitted</span><strong>€286.4k</strong><i style={{width:"75%"}}/></div></div><div className="control-evidence"><span><b>100%</b> ledger-to-return tie-out</span><span><b>12</b> exceptions reviewed</span><span><b>0</b> overdue filings</span></div></article>
       <article className="panel tax-calendar"><div className="panel-header"><div><p className="eyebrow">FILING CALENDAR</p><h2>Next obligations</h2></div><span className="status neutral">4 upcoming</span></div><div className="calendar-list"><div><time>25 APR</time><p><b>VAT return</b><span>March 2026 · Prepared</span></p><em className="ready">Ready</em></div><div><time>15 MAY</time><p><b>Advance CIT</b><span>Q2 instalment · Forecast</span></p><em>Open</em></div><div><time>31 MAY</time><p><b>Transfer pricing file</b><span>Evidence refresh · In review</span></p><em className="review">Review</em></div><div><time>15 JUN</time><p><b>Annual CIT return</b><span>FY2025 · Draft</span></p><em>Open</em></div></div></article></div>
     <div className="beps-section"><div className="section-heading"><div><p className="eyebrow">BEPS RISK REGISTER</p><h2>Cross-border positions requiring evidence</h2></div><span className="beps-score"><b>2</b> priority reviews</span></div><div className="risk-table"><div className="risk-head"><span>Risk area</span><span>Control assessment</span><span>Owner / due</span><span>Status</span></div>{risks.map(r=><div className="risk-row" key={r.title}><span><i className={`risk-dot ${r.level}`}/><b>{r.title}</b></span><p>{r.detail}</p><span>{r.owner}</span><em className={r.level}>{r.level}</em></div>)}</div><div className="beps-guidance"><div><strong>Pillar Two screen</strong><p>First gate: verify whether consolidated group revenue meets the €750m threshold and whether the entity sits within the relevant consolidated perimeter.</p></div><div><strong>Transfer pricing</strong><p>Keep intercompany agreements, functional analysis, benefit evidence and pricing support aligned with where people, risks and value creation actually sit.</p></div><div><strong>Decision rule</strong><p>No green status without evidence. Escalate uncertain residency, permanent establishment, withholding tax or related-party positions to qualified advisers.</p></div></div></div>
@@ -123,8 +141,8 @@ function Compliance() {
 export default function Home() {
   const [view, setView] = useState<View>("cockpit");
   const [assumptions, setAssumptions] = useState<ScenarioAssumptions>(presets.base);
-  return <main><div className="demo-banner">ILLUSTRATIVE FICTIONAL DATA <span>Independent interview prototype</span></div>
-    <header><button className="brand" onClick={() => setView("cockpit")} aria-label="Go to cockpit"><span>n</span><b>finance cockpit</b></button><nav>{(["cockpit","revenue","scenario","compliance"] as View[]).map(item => <button key={item} className={view === item ? "active" : ""} onClick={() => setView(item)}>{item === "cockpit" ? "Executive cockpit" : item === "revenue" ? "Revenue bridge" : item === "scenario" ? "Scenario planner" : "Tax & compliance"}</button>)}</nav><div className="period"><span>Reporting period</span><strong>31 Mar 2026</strong></div></header>
+  return <main><div className="demo-banner">ILLUSTRATIVE FICTIONAL DATA <span>Carolis Mazika</span></div>
+    <header><button className="brand" onClick={() => setView("cockpit")} aria-label="Go to cockpit"><span>n</span><b>nexos.ai Finance Cockpit</b></button><nav>{(["cockpit","revenue","scenario","compliance"] as View[]).map(item => <button key={item} className={view === item ? "active" : ""} onClick={() => setView(item)}>{item === "cockpit" ? "Executive cockpit" : item === "revenue" ? "Revenue bridge" : item === "scenario" ? "Scenario planner" : "Tax & compliance"}</button>)}</nav><div className="period"><span>Reporting period</span><strong>31 Mar 2026</strong></div></header>
     {view === "cockpit" && <Cockpit onNavigate={setView} />}{view === "revenue" && <RevenueBridge />}{view === "scenario" && <ScenarioPlanner assumptions={assumptions} setAssumptions={setAssumptions} />}{view === "compliance" && <Compliance />}
     <footer><span>Fictional illustrative data. Independent interview prototype; not affiliated with or endorsed by nexos.ai.</span><span>EUR · Management view · v1.0</span></footer>
   </main>;
