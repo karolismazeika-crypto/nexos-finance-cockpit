@@ -11,7 +11,7 @@
       "summary": "New official EU publication identified by the finance relevance monitor.",
       "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:52026PC0560"
+      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0560"
     },
     {
       "title": "CELEX:52026PC0308: Proposal for a COUNCIL DIRECTIVE on administrative cooperation in the field of taxation (recast)",
@@ -22,29 +22,7 @@
       "summary": "New official EU publication identified by the finance relevance monitor.",
       "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:52026PC0308"
-    },
-    {
-      "title": "CELEX:52026PC0281: Proposal for a COUNCIL IMPLEMENTING DECISION amending Implementing Decision (EU) 2017/784 authorising the Italian Republic to apply a special measure derogating from Articles 206 and 226 of Directive 2006/112/EC on the common system of value added tax",
-      "topic": "Tax & BEPS",
-      "date": "Recent",
-      "relevance": "High",
-      "status": "Commission proposals",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:52026PC0281"
-    },
-    {
-      "title": "CELEX:52026PC0275: Proposal for a COUNCIL IMPLEMENTING DECISION authorising Belgium to apply a reduced rate of taxation to electricity directly supplied to vessels at berth in a port in accordance with Article 19 of Directive 2003/96/EC",
-      "topic": "Tax & BEPS",
-      "date": "Recent",
-      "relevance": "High",
-      "status": "Commission proposals",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:52026PC0275"
+      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0308"
     },
     {
       "title": "CELEX:52026PC0502: Proposal for a REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL establishing a framework of measures for strengthening Europe’s cloud and AI ecosystem (Cloud and AI Development Act)",
@@ -55,40 +33,18 @@
       "summary": "New official EU publication identified by the finance relevance monitor.",
       "financeImpact": "Potential ai & data implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:52026PC0502"
+      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0502"
     },
     {
-      "title": "CELEX:22026X01951: Information concerning the entry into force of the Agreement between the European Union and the Republic of Lebanon, in the form of an exchange of letters, amending and supplementing the Agreement for scientific and technological cooperation between the European Union and the Republic of Lebanon setting out the terms and conditions for the participation of the Republic of Lebanon in the Partnership for Research and Innovation in the Mediterranean Area (PRIMA)",
-      "topic": "R&D & Grants",
+      "title": "CELEX:32026R1342: Commission Delegated Regulation (EU) 2026/1342 of 17 June 2026 amending Delegated Regulation (EU) 2015/98 on the implementation of the Union’s international obligations, as referred to in Article 15(2) of Regulation (EU) No 1380/2013 of the European Parliament and of the Council, under the International Convention for the Conservation of Atlantic Tunas and the Convention on Future Multilateral Cooperation in the Northwest Atlantic Fisheries",
+      "topic": "Tax & BEPS",
       "date": "23 Aug 2026",
-      "relevance": "High",
-      "status": "Official Journal L",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential r&d & grants implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:22026X01951"
-    },
-    {
-      "title": "CELEX:52026PC0280: Proposal for a COUNCIL IMPLEMENTING DECISION authorising support from the EU Cybersecurity Reserve for Moldova and repealing Implementing Decision (EU) 2025/1458",
-      "topic": "AI & Data",
-      "date": "Recent",
-      "relevance": "Medium",
-      "status": "Commission proposals",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential ai & data implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:52026PC0280"
-    },
-    {
-      "title": "CELEX:32026R1092: Commission Delegated Regulation (EU) 2026/1092 of 21 May 2026 supplementing Directive 2014/65/EU of the European Parliament and of the Council with regard to regulatory technical standards for the establishment of an EU code of conduct for issuer-sponsored research",
-      "topic": "R&D & Grants",
-      "date": "03 Sept 2026",
       "relevance": "Medium",
       "status": "Official Journal L",
       "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential r&d & grants implications require finance and adviser assessment.",
+      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/./legal-content/AUTO/?uri=CELEX:32026R1092"
+      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026R1342"
     }
   ]
 }
