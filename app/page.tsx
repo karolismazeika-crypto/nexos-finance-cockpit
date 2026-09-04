@@ -155,6 +155,6 @@ export default function Home() {
   return <main><div className="demo-banner">ILLUSTRATIVE OVERVIEW <span>by Karolis Mazeika (Finance Director)</span></div>
     <header><button className="brand" onClick={() => setView("cockpit")} aria-label="Go to cockpit"><span>n</span><b>nexos.ai Finance Cockpit</b></button><nav>{(["cockpit","revenue","scenario","compliance"] as View[]).map(item => <button key={item} className={view === item ? "active" : ""} onClick={() => setView(item)}>{item === "cockpit" ? "Executive cockpit" : item === "revenue" ? "Revenue bridge" : item === "scenario" ? "Scenario planner" : "Tax & compliance"}</button>)}</nav><div className="period"><span>Reporting period</span><strong>31 Mar 2026</strong></div></header>
     {view === "cockpit" && <Cockpit onNavigate={setView} />}{view === "revenue" && <RevenueBridge />}{view === "scenario" && <ScenarioPlanner assumptions={assumptions} setAssumptions={setAssumptions} />}{view === "compliance" && <Compliance />}
-    <footer><span>Fictional illustrative data. Independent interview prototype; not affiliated with or endorsed by nexos.ai.</span><span>EUR · Management view · v1.0</span></footer>
+    <footer><span>Fictional illustrative data. Independent interview prototype; not affiliated with or endorsed by nexos.ai.</span><span>EUR · Management view · v1.1</span></footer>
   </main>;
 }
