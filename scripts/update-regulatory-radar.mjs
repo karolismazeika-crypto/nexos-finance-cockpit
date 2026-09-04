@@ -63,7 +63,8 @@ async function enrich(items) {
   const payload = await response.json();
   const text = payload.candidates?.[0]?.content?.parts?.[0]?.text;
   const parsed = JSON.parse(text);
-  return parsed.filter(item => item.title && item.url).slice(0, 8);
+  const list = Array.isArray(parsed) ? parsed : parsed.items || parsed.results || [];
+  return list.filter(item => item.title && item.url).slice(0, 8);
 }
 
 const path = new URL("../app/data/regulatory-radar.json", import.meta.url);
