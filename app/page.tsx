@@ -164,7 +164,7 @@ function RegulatoryRadar() {
     setAsking(true); setAnswer(""); setAskError("");
     try {
       const context = regulatoryRadar.items.map(item => ({ title:item.title, topic:item.topic, relevance:item.relevance, summary:item.summary, financeImpact:item.financeImpact, action:item.action, url:item.url }));
-      const response = await fetch("/.netlify/functions/ask-gemini", { method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({ question:clean, context }) });
+      const response = await fetch("/api/ask-gemini", { method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({ question:clean, context }) });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error || "The assistant is temporarily unavailable.");
       setAnswer(payload.answer);
