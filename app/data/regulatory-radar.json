@@ -1,38 +1,38 @@
 {
-  "lastChecked": "07 Sept 2026",
+  "lastChecked": "08 Sept 2026",
   "generatedBy": "Gemini-assisted official-source monitor",
   "items": [
     {
-      "title": "Proposal for a COUNCIL DIRECTIVE amending Directives 2003/49/EC, 2009/133/EC, 2011/96/EU, (EU) 2016/1164, (EU)2017/1852, (EU) 2025/50 as regards the simplification of the Union framework on direct taxation and supporting growth and competitiveness of the EU",
+      "title": "CELEX:52026PC0560: Proposal for a COUNCIL DIRECTIVE amending Directives 2003/49/EC, 2009/133/EC, 2011/96/EU, (EU) 2016/1164, (EU)2017/1852, (EU) 2025/50 as regards the simplification of the Union framework on direct taxation and supporting growth and competitiveness of the EU",
       "topic": "Tax & BEPS",
-      "date": "",
+      "date": "2026",
       "relevance": "Medium",
       "status": "Proposal",
-      "summary": "This proposal aims to simplify the EU direct taxation framework to support growth and competitiveness. It amends multiple existing directives to streamline tax compliance and reduce administrative burdens for businesses operating across EU borders.",
-      "financeImpact": "Potential reduction in cross-border tax compliance costs and administrative overhead, improving cash flow predictability for EU-based operations.",
-      "action": "Monitor legislative progress and assess potential compliance cost savings for cross-border B2B operations.",
+      "summary": "This proposal aims to simplify the EU direct taxation framework to support growth and competitiveness by amending several existing directives, streamlining tax compliance for businesses operating across EU borders.",
+      "financeImpact": "Potential reduction in cross-border tax compliance costs and administrative burdens, optimizing corporate tax structures within the EU.",
+      "action": "Monitor the legislative progress of the proposal to assess future impacts on cross-border corporate tax planning.",
       "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0560"
     },
     {
-      "title": "Proposal for a COUNCIL DIRECTIVE on administrative cooperation in the field of taxation (recast)",
+      "title": "CELEX:52026PC0308: Proposal for a COUNCIL DIRECTIVE on administrative cooperation in the field of taxation (recast)",
       "topic": "Tax & BEPS",
-      "date": "",
+      "date": "2026",
       "relevance": "Medium",
       "status": "Proposal",
-      "summary": "A proposal to recast the directive on administrative cooperation in taxation, aiming to strengthen information exchange and transparency among EU member states to prevent tax evasion and improve tax administration efficiency.",
-      "financeImpact": "May increase reporting transparency requirements and administrative overhead related to cross-border financial data sharing.",
-      "action": "Review internal tax reporting workflows to ensure readiness for enhanced EU-wide information exchange standards.",
+      "summary": "A proposal to recast the directive on administrative cooperation in taxation, aiming to strengthen tax transparency, information exchange, and cooperation among EU member states to combat tax evasion.",
+      "financeImpact": "May increase reporting transparency requirements and compliance costs related to cross-border financial and tax data sharing.",
+      "action": "Review internal tax reporting workflows to ensure readiness for enhanced EU-wide data sharing requirements.",
       "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0308"
     },
     {
-      "title": "Proposal for a REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL establishing a framework of measures for strengthening Europe’s cloud and AI ecosystem (Cloud and AI Development Act)",
+      "title": "CELEX:52026PC0502: Proposal for a REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL establishing a framework of measures for strengthening Europe’s cloud and AI ecosystem (Cloud and AI Development Act)",
       "topic": "AI & Data",
-      "date": "",
+      "date": "2026",
       "relevance": "High",
       "status": "Proposal",
-      "summary": "This proposed regulation establishes a framework to strengthen Europe's cloud and AI ecosystem. It aims to boost regional development, infrastructure, and adoption of AI and cloud technologies across the Union.",
-      "financeImpact": "May provide funding opportunities, subsidies, or infrastructure support, while potentially introducing new compliance standards for AI SaaS providers.",
-      "action": "Track funding opportunities and align product roadmap with emerging EU cloud and AI standards.",
+      "summary": "This proposed regulation establishes a framework to strengthen Europe's cloud and AI ecosystem, aiming to boost development, infrastructure, and adoption of AI and cloud technologies across the Union.",
+      "financeImpact": "Potential access to EU funding, subsidies, or improved infrastructure, while aligning with new ecosystem standards may require compliance investment.",
+      "action": "Track funding opportunities and technical standards arising from this Act to align product roadmap.",
       "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0502"
     }
   ]
