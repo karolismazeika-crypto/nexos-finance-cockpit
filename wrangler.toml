@@ -1,6 +1,7 @@
 name = "nexos-finance-cockpit"
 compatibility_date = "2026-09-01"
 main = "cloudflare-worker.js"
+keep_vars = true
 
 [assets]
 directory = "./out"
