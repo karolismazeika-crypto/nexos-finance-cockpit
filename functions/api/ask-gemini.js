@@ -39,11 +39,24 @@ export async function onRequestPost({ request, env }) {
   const context = Array.isArray(payload.context) ? payload.context.slice(0, 8) : [];
   if (!question) return json({ error: "Please enter a question." }, 400);
 
-  const prompt = `You are a concise finance regulatory assistant. Answer only from the supplied EUR-Lex-derived dashboard context. If the answer is not supported, say so. Do not provide legal or tax advice, invent facts, or imply affiliation with nexos.ai. Respond in no more than 120 words and end with the most relevant official-source URL when available.\n\nContext: ${JSON.stringify(context).slice(0, 10000)}\n\nQuestion: ${question}`;
+  const prompt = `You are a fast, precise finance and EU-regulatory briefing assistant for an executive dashboard.
+
+Use only the supplied dashboard context. Never invent a law, deadline, risk or company fact. If the user enters only a keyword, interpret it as: "What does the monitored dashboard currently show about this topic, and what should Finance do next?" If the topic is absent, say that clearly instead of forcing an unrelated item.
+
+Answer in this exact style:
+- Start with a direct one-sentence answer.
+- Add at most 3 short bullets only when useful.
+- Maximum 100 words.
+- Include one relevant official-source URL only when it exists in the context.
+- End with: "Informational only; validate with tax or legal advisers."
+
+Dashboard context: ${JSON.stringify(context).slice(0, 10000)}
+
+User question: ${question}`;
 
   try {
     const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent",
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent",
       {
         method: "POST",
         headers: {
@@ -52,8 +65,13 @@ export async function onRequestPost({ request, env }) {
         },
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.1, maxOutputTokens: 220 },
+          generationConfig: {
+            temperature: 0.1,
+            maxOutputTokens: 400,
+            thinkingConfig: { thinkingBudget: 0 },
+          },
         }),
+        signal: AbortSignal.timeout(10000),
       },
     );
     if (!response.ok) {
