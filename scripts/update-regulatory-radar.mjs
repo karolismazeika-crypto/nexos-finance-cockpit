@@ -69,7 +69,16 @@ async function enrich(items) {
 }
 
 const path = new URL("../app/data/regulatory-radar.json", import.meta.url);
+const baselinePath = new URL("../app/data/regulatory-baseline.json", import.meta.url);
 const previous = JSON.parse(await readFile(path, "utf8"));
+const baseline = JSON.parse(await readFile(baselinePath, "utf8"));
+
+function mergeWithBaseline(items) {
+  return Array.from(
+    new Map([...items, ...baseline].map(item => [item.url || item.title, item])).values(),
+  ).slice(0, 8);
+}
+
 try {
   const discovered = await discover();
   let result;
@@ -79,10 +88,10 @@ try {
     console.warn(`Gemini unavailable; using deterministic fallback: ${error.message}`);
     result = { items: fallback(discovered.slice(0, 6)), mode: `Rules-based fallback · ${error.message}` };
   }
-  const { items } = result;
+  const items = mergeWithBaseline(result.items);
   if (!items.length) throw new Error("No relevant publications returned");
   const lastChecked = new Date().toLocaleDateString("en-GB", { day:"2-digit", month:"short", year:"numeric", timeZone:"Europe/Vilnius" });
-  await writeFile(path, `${JSON.stringify({ lastChecked, generatedBy: result.mode, items }, null, 2)}\n`);
+  await writeFile(path, `${JSON.stringify({ lastChecked, generatedBy: `${result.mode} · live feed + standing watchlist`, items }, null, 2)}\n`);
   console.log(`Updated regulatory radar with ${items.length} items.`);
 } catch (error) {
   console.warn(`Radar update retained prior validated data: ${error.message}`);

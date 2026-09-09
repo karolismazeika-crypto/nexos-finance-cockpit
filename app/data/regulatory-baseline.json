@@ -1,0 +1,46 @@
+[
+  {
+    "title": "EU Artificial Intelligence Act — phased compliance implementation",
+    "topic": "AI & Data",
+    "date": "In force",
+    "relevance": "High",
+    "status": "Standing watch",
+    "summary": "The EU AI Act establishes a risk-based framework for providers and deployers of AI systems. Obligations apply in phases and require classification, governance, documentation and monitoring appropriate to each use case.",
+    "financeImpact": "Budget for compliance ownership, product controls, evidence retention and supplier assurance; reflect implementation costs and potential exposure in forecasts.",
+    "action": "Maintain an AI-system inventory, assign each use case a regulatory role and risk tier, and track phased obligations with Legal and Product.",
+    "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+  },
+  {
+    "title": "EU Data Act — cloud switching, data access and contract readiness",
+    "topic": "AI & Data",
+    "date": "Applicable",
+    "relevance": "High",
+    "status": "Standing watch",
+    "summary": "The Data Act introduces harmonised rules on access to and use of data, switching between data-processing services, interoperability and safeguards for non-personal data.",
+    "financeImpact": "Cloud-switching and contract requirements may affect supplier commitments, pricing, migration costs, customer terms and infrastructure concentration risk.",
+    "action": "Review cloud and customer contracts, switching charges, data portability commitments and supplier exit plans with Legal and Engineering.",
+    "url": "https://eur-lex.europa.eu/eli/reg/2023/2854"
+  },
+  {
+    "title": "EU Pillar Two Directive — global minimum taxation readiness",
+    "topic": "Tax & BEPS",
+    "date": "In force",
+    "relevance": "High",
+    "status": "Standing watch",
+    "summary": "Directive (EU) 2022/2523 implements a global minimum level of taxation for in-scope multinational and large-scale domestic groups in the EU.",
+    "financeImpact": "If the consolidated group meets the scope threshold, Finance needs jurisdictional data, effective-tax-rate calculations, top-up-tax forecasting and controlled reporting inputs.",
+    "action": "Confirm group scope with the parent, document entity and data ownership, and maintain a Pillar Two calculation and filing calendar.",
+    "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022L2523"
+  },
+  {
+    "title": "VAT in the Digital Age — digital reporting and e-invoicing transition",
+    "topic": "Tax & BEPS",
+    "date": "Phased implementation",
+    "relevance": "High",
+    "status": "Standing watch",
+    "summary": "The adopted VAT in the Digital Age package modernises EU VAT rules through digital reporting, e-invoicing and changes affecting platform and cross-border VAT administration.",
+    "financeImpact": "ERP, invoicing, tax determination and reporting processes may require phased changes across EU registrations and transaction flows.",
+    "action": "Map affected transactions and registrations, compare system capability with expected digital-reporting requirements, and build an implementation roadmap.",
+    "url": "https://eur-lex.europa.eu/eli/dir/2025/516/oj"
+  }
+]
