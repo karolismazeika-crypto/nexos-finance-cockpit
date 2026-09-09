@@ -1,7 +1,51 @@
 {
   "lastChecked": "09 Sept 2026",
-  "generatedBy": "Rules-based fallback · Gemini returned 401 · live feed + standing watchlist",
+  "generatedBy": "Rules-based official-source monitor · live feed + standing watchlist",
   "items": [
+    {
+      "title": "EU Artificial Intelligence Act — phased compliance implementation",
+      "topic": "AI & Data",
+      "date": "In force",
+      "relevance": "High",
+      "status": "Standing watch",
+      "summary": "The EU AI Act establishes a risk-based framework for providers and deployers of AI systems. Obligations apply in phases and require classification, governance, documentation and monitoring appropriate to each use case.",
+      "financeImpact": "Budget for compliance ownership, product controls, evidence retention and supplier assurance; reflect implementation costs and potential exposure in forecasts.",
+      "action": "Maintain an AI-system inventory, assign each use case a regulatory role and risk tier, and track phased obligations with Legal and Product.",
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+    },
+    {
+      "title": "EU Data Act — cloud switching, data access and contract readiness",
+      "topic": "AI & Data",
+      "date": "Applicable",
+      "relevance": "High",
+      "status": "Standing watch",
+      "summary": "The Data Act introduces harmonised rules on access to and use of data, switching between data-processing services, interoperability and safeguards for non-personal data.",
+      "financeImpact": "Cloud-switching and contract requirements may affect supplier commitments, pricing, migration costs, customer terms and infrastructure concentration risk.",
+      "action": "Review cloud and customer contracts, switching charges, data portability commitments and supplier exit plans with Legal and Engineering.",
+      "url": "https://eur-lex.europa.eu/eli/reg/2023/2854"
+    },
+    {
+      "title": "EU Pillar Two Directive — global minimum taxation readiness",
+      "topic": "Tax & BEPS",
+      "date": "In force",
+      "relevance": "High",
+      "status": "Standing watch",
+      "summary": "Directive (EU) 2022/2523 implements a global minimum level of taxation for in-scope multinational and large-scale domestic groups in the EU.",
+      "financeImpact": "If the consolidated group meets the scope threshold, Finance needs jurisdictional data, effective-tax-rate calculations, top-up-tax forecasting and controlled reporting inputs.",
+      "action": "Confirm group scope with the parent, document entity and data ownership, and maintain a Pillar Two calculation and filing calendar.",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022L2523"
+    },
+    {
+      "title": "VAT in the Digital Age — digital reporting and e-invoicing transition",
+      "topic": "Tax & BEPS",
+      "date": "Phased implementation",
+      "relevance": "High",
+      "status": "Standing watch",
+      "summary": "The adopted VAT in the Digital Age package modernises EU VAT rules through digital reporting, e-invoicing and changes affecting platform and cross-border VAT administration.",
+      "financeImpact": "ERP, invoicing, tax determination and reporting processes may require phased changes across EU registrations and transaction flows.",
+      "action": "Map affected transactions and registrations, compare system capability with expected digital-reporting requirements, and build an implementation roadmap.",
+      "url": "https://eur-lex.europa.eu/eli/dir/2025/516/oj"
+    },
     {
       "title": "CELEX:32026D1950: Council Decision (EU) 2026/1950 of 10 July 2026 on the conclusion of the Agreement in the form of an Exchange of Letters amending and supplementing the Agreement for scientific and technological cooperation between the European Union and the Hashemite Kingdom of Jordan, setting out the terms and conditions for the participation of the Hashemite Kingdom of Jordan in the Partnership for Research and Innovation in the Mediterranean Area (PRIMA)",
       "topic": "R&D & Grants",
@@ -45,50 +89,6 @@
       "financeImpact": "Potential r&d & grants implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
       "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:22026A01998"
-    },
-    {
-      "title": "CELEX:32026R1974: Commission Implementing Regulation (EU) 2026/1974 of 8 September 2026 granting a Union authorisation for the single biocidal product ERO MN in accordance with Regulation (EU) No 528/2012 of the European Parliament and of the Council",
-      "topic": "R&D & Grants",
-      "date": "08 Sept 2026",
-      "relevance": "Medium",
-      "status": "Official Journal L",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential r&d & grants implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026R1974"
-    },
-    {
-      "title": "CELEX:32026R1342: Commission Delegated Regulation (EU) 2026/1342 of 17 June 2026 amending Delegated Regulation (EU) 2015/98 on the implementation of the Union’s international obligations, as referred to in Article 15(2) of Regulation (EU) No 1380/2013 of the European Parliament and of the Council, under the International Convention for the Conservation of Atlantic Tunas and the Convention on Future Multilateral Cooperation in the Northwest Atlantic Fisheries",
-      "topic": "Tax & BEPS",
-      "date": "23 Aug 2026",
-      "relevance": "Medium",
-      "status": "Official Journal L",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026R1342"
-    },
-    {
-      "title": "EU Artificial Intelligence Act — phased compliance implementation",
-      "topic": "AI & Data",
-      "date": "In force",
-      "relevance": "High",
-      "status": "Standing watch",
-      "summary": "The EU AI Act establishes a risk-based framework for providers and deployers of AI systems. Obligations apply in phases and require classification, governance, documentation and monitoring appropriate to each use case.",
-      "financeImpact": "Budget for compliance ownership, product controls, evidence retention and supplier assurance; reflect implementation costs and potential exposure in forecasts.",
-      "action": "Maintain an AI-system inventory, assign each use case a regulatory role and risk tier, and track phased obligations with Legal and Product.",
-      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
-    },
-    {
-      "title": "EU Data Act — cloud switching, data access and contract readiness",
-      "topic": "AI & Data",
-      "date": "Applicable",
-      "relevance": "High",
-      "status": "Standing watch",
-      "summary": "The Data Act introduces harmonised rules on access to and use of data, switching between data-processing services, interoperability and safeguards for non-personal data.",
-      "financeImpact": "Cloud-switching and contract requirements may affect supplier commitments, pricing, migration costs, customer terms and infrastructure concentration risk.",
-      "action": "Review cloud and customer contracts, switching charges, data portability commitments and supplier exit plans with Legal and Engineering.",
-      "url": "https://eur-lex.europa.eu/eli/reg/2023/2854"
     }
   ]
 }

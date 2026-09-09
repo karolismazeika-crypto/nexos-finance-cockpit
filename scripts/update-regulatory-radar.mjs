@@ -75,7 +75,7 @@ const baseline = JSON.parse(await readFile(baselinePath, "utf8"));
 
 function mergeWithBaseline(items) {
   return Array.from(
-    new Map([...items, ...baseline].map(item => [item.url || item.title, item])).values(),
+    new Map([...baseline, ...items].map(item => [item.url || item.title, item])).values(),
   ).slice(0, 8);
 }
 
