@@ -1,6 +1,6 @@
 {
-  "lastChecked": "11 Sept 2026",
-  "generatedBy": "Rules-based fallback · Gemini returned 401 · live feed + standing watchlist",
+  "lastChecked": "12 Sept 2026",
+  "generatedBy": "Rules-based official-source monitor · live feed + standing watchlist",
   "items": [
     {
       "title": "EU Artificial Intelligence Act — phased compliance implementation",
@@ -45,50 +45,6 @@
       "financeImpact": "ERP, invoicing, tax determination and reporting processes may require phased changes across EU registrations and transaction flows.",
       "action": "Map affected transactions and registrations, compare system capability with expected digital-reporting requirements, and build an implementation roadmap.",
       "url": "https://eur-lex.europa.eu/eli/dir/2025/516/oj"
-    },
-    {
-      "title": "CELEX:52026PC0560: Proposal for a COUNCIL DIRECTIVE amending Directives 2003/49/EC, 2009/133/EC, 2011/96/EU, (EU) 2016/1164, (EU)2017/1852, (EU) 2025/50 as regards the simplification of the Union framework on direct taxation and supporting growth and competitiveness of the EU",
-      "topic": "Tax & BEPS",
-      "date": "Recent",
-      "relevance": "High",
-      "status": "Commission proposals",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0560"
-    },
-    {
-      "title": "CELEX:52026PC0308: Proposal for a COUNCIL DIRECTIVE on administrative cooperation in the field of taxation (recast)",
-      "topic": "Tax & BEPS",
-      "date": "Recent",
-      "relevance": "High",
-      "status": "Commission proposals",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0308"
-    },
-    {
-      "title": "CELEX:32026B1627: Decision (EU) 2026/1627 of the European Parliament of 29 April 2026 on discharge in respect of the implementation of the budget of the European Institute of Innovation and Technology for the financial year 2024",
-      "topic": "Tax & BEPS",
-      "date": "09 Sept 2026",
-      "relevance": "Medium",
-      "status": "Official Journal L",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026B1627"
-    },
-    {
-      "title": "CELEX:32026B1570: Decision (EU, Euratom) 2026/1570 of the European Parliament of 29 April 2026 on discharge in respect of the implementation of the budget of the European Innovation Council and SMEs Executive Agency for the financial year 2024",
-      "topic": "Tax & BEPS",
-      "date": "09 Sept 2026",
-      "relevance": "Medium",
-      "status": "Official Journal L",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026B1570"
     }
   ]
 }
