@@ -1,5 +1,5 @@
 {
-  "lastChecked": "02 Oct 2026",
+  "lastChecked": "03 Oct 2026",
   "generatedBy": "Rules-based fallback · Gemini returned 401 · live feed + standing watchlist",
   "items": [
     {
@@ -58,7 +58,7 @@
       "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026D2222"
     },
     {
-      "title": "CELEX:32026B1570: Decision (EU, Euratom) 2026/1570 of the European Parliament of 29 April 2026 on discharge in respect of the implementation of the budget of the European Innovation Council and SMEs Executive Agency for the financial year 2024",
+      "title": "CELEX:32026B1627: Decision (EU) 2026/1627 of the European Parliament of 29 April 2026 on discharge in respect of the implementation of the budget of the European Institute of Innovation and Technology for the financial year 2024",
       "topic": "Tax & BEPS",
       "date": "09 Sept 2026",
       "relevance": "Medium",
@@ -66,18 +66,7 @@
       "summary": "New official EU publication identified by the finance relevance monitor.",
       "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026B1570"
-    },
-    {
-      "title": "CELEX:32026B1571: Decision (EU, Euratom) 2026/1571 of the European Parliament of 29 April 2026 on discharge in respect of the implementation of the budget of the European Research Council Executive Agency for the financial year 2024",
-      "topic": "R&D & Grants",
-      "date": "09 Sept 2026",
-      "relevance": "Medium",
-      "status": "EU legislation",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential r&d & grants implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026B1571"
+      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026B1627"
     },
     {
       "title": "CELEX:32026D2166: Commission Implementing Decision (EU) 2026/2166 of 29 September 2026 amending Implementing Decision 2013/700/EU setting up the European Social Survey as a European Research Infrastructure Consortium (ESS ERIC) (notified under document C(2026) 6735)",
@@ -89,6 +78,17 @@
       "financeImpact": "Potential r&d & grants implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
       "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026D2166"
+    },
+    {
+      "title": "CELEX:32026R2116: Commission Implementing Regulation (EU) 2026/2116 of 8 September 2026 granting a Union authorisation for the biocidal product family Christeyns Peracetic Acid Biocidal Product Family in accordance with Regulation (EU) No 528/2012 of the European Parliament and of the Council",
+      "topic": "R&D & Grants",
+      "date": "24 Sept 2026",
+      "relevance": "Medium",
+      "status": "Official Journal L",
+      "summary": "New official EU publication identified by the finance relevance monitor.",
+      "financeImpact": "Potential r&d & grants implications require finance and adviser assessment.",
+      "action": "Review the official text, confirm scope and assign an owner if applicable.",
+      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026R2116"
     }
   ]
 }
