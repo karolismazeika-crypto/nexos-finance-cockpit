@@ -1,5 +1,5 @@
 {
-  "lastChecked": "05 Oct 2026",
+  "lastChecked": "06 Oct 2026",
   "generatedBy": "Rules-based fallback · Gemini returned 401 · live feed + standing watchlist",
   "items": [
     {
@@ -47,7 +47,7 @@
       "url": "https://eur-lex.europa.eu/eli/dir/2025/516/oj"
     },
     {
-      "title": "OJ:L_202602218: Agreement, in the form of an Exchange of Letters, between the European Union and the Kingdom of Morocco amending and supplementing the Agreement for scientific and technological cooperation between the European Union and the Kingdom of Morocco setting out the terms and conditions for the participation of the Kingdom of Morocco in the Partnership for Research and Innovation in the Mediterranean Area (PRIMA)",
+      "title": "CELEX:32026D2219: Council Decision (EU) 2026/2219 of 24 September 2026 on the conclusion of the Agreement, in the form of an Exchange of Letters, between the European Union and the Kingdom of Morocco amending and supplementing the Agreement for scientific and technological cooperation between the European Union and the Kingdom of Morocco setting out the terms and conditions for the participation of the Kingdom of Morocco in the Partnership for Research and Innovation in the Mediterranean Area (PRIMA)",
       "topic": "R&D & Grants",
       "date": "04 Oct 2026",
       "relevance": "High",
@@ -55,10 +55,10 @@
       "summary": "New official EU publication identified by the finance relevance monitor.",
       "financeImpact": "Potential r&d & grants implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=OJ:L_202602218"
+      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026D2219"
     },
     {
-      "title": "OJ:L_202602219: Council Decision (EU) 2026/2219 of 24 September 2026 on the conclusion of the Agreement, in the form of an Exchange of Letters, between the European Union and the Kingdom of Morocco amending and supplementing the Agreement for scientific and technological cooperation between the European Union and the Kingdom of Morocco setting out the terms and conditions for the participation of the Kingdom of Morocco in the Partnership for Research and Innovation in the Mediterranean Area (PRIMA)",
+      "title": "CELEX:32026D2217: Council Decision (EU) 2026/2217 of 17 February 2026 on the signing and provisional application of the Agreement, in the form of an Exchange of Letters, between the European Union and the Kingdom of Morocco amending and supplementing the Agreement for scientific and technological cooperation between the European Union and the Kingdom of Morocco setting out the terms and conditions for the participation of the Kingdom of Morocco in the Partnership for Research and Innovation in the Mediterranean Area (PRIMA)",
       "topic": "R&D & Grants",
       "date": "04 Oct 2026",
       "relevance": "High",
@@ -66,10 +66,10 @@
       "summary": "New official EU publication identified by the finance relevance monitor.",
       "financeImpact": "Potential r&d & grants implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=OJ:L_202602219"
+      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026D2217"
     },
     {
-      "title": "OJ:L_202602217: Council Decision (EU) 2026/2217 of 17 February 2026 on the signing and provisional application of the Agreement, in the form of an Exchange of Letters, between the European Union and the Kingdom of Morocco amending and supplementing the Agreement for scientific and technological cooperation between the European Union and the Kingdom of Morocco setting out the terms and conditions for the participation of the Kingdom of Morocco in the Partnership for Research and Innovation in the Mediterranean Area (PRIMA)",
+      "title": "CELEX:22026A02218: Agreement, in the form of an Exchange of Letters, between the European Union and the Kingdom of Morocco amending and supplementing the Agreement for scientific and technological cooperation between the European Union and the Kingdom of Morocco setting out the terms and conditions for the participation of the Kingdom of Morocco in the Partnership for Research and Innovation in the Mediterranean Area (PRIMA)",
       "topic": "R&D & Grants",
       "date": "04 Oct 2026",
       "relevance": "High",
@@ -77,7 +77,7 @@
       "summary": "New official EU publication identified by the finance relevance monitor.",
       "financeImpact": "Potential r&d & grants implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=OJ:L_202602217"
+      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:22026A02218"
     },
     {
       "title": "CELEX:32026D2222: Council Decision (EU) 2026/2222 of 28 September 2026 appointing a member of the Court of Auditors",
