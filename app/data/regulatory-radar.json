@@ -1,5 +1,5 @@
 {
-  "lastChecked": "18 Oct 2026",
+  "lastChecked": "19 Oct 2026",
   "generatedBy": "Rules-based fallback · Gemini returned 401 · live feed + standing watchlist",
   "items": [
     {
@@ -69,6 +69,17 @@
       "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026D2217"
     },
     {
+      "title": "CELEX:52026PC0556: Proposal for a COUNCIL IMPLEMENTING DECISION amending Implementing Decision (EU) 2021/1778 as regards an extension of the authorisation for Germany to apply a special measure derogating from Article 193 of Directive 2006/112/EC on the common system of value added tax",
+      "topic": "Tax & BEPS",
+      "date": "Recent",
+      "relevance": "High",
+      "status": "Commission proposals",
+      "summary": "New official EU publication identified by the finance relevance monitor.",
+      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
+      "action": "Review the official text, confirm scope and assign an owner if applicable.",
+      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0556"
+    },
+    {
       "title": "CELEX:52026PC0514: Proposal for a COUNCIL IMPLEMENTING DECISION amending Implementing Decision (EU) 2021/512 as regards an extension of the authorisation for the United Kingdom to apply, in respect of Northern Ireland, a special measure derogating from Articles 16 and 168 of Directive 2006/112/EC on the common system of value added tax",
       "topic": "Tax & BEPS",
       "date": "Recent",
@@ -78,17 +89,6 @@
       "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
       "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0514"
-    },
-    {
-      "title": "CELEX:52026PC0461: Proposal for a COUNCIL IMPLEMENTING DECISION amending Implementing Decision (EU) 2018/485 as regards an extension of the authorisation for Denmark to apply a special measure derogating from Article 75 of Directive 2006/112/EC on the common system of value added tax",
-      "topic": "Tax & BEPS",
-      "date": "Recent",
-      "relevance": "High",
-      "status": "Commission proposals",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0461"
     }
   ]
 }
