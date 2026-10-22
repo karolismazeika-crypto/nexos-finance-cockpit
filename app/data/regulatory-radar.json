@@ -1,5 +1,5 @@
 {
-  "lastChecked": "21 Oct 2026",
+  "lastChecked": "22 Oct 2026",
   "generatedBy": "Rules-based fallback · Gemini returned 401 · live feed + standing watchlist",
   "items": [
     {
@@ -47,28 +47,6 @@
       "url": "https://eur-lex.europa.eu/eli/dir/2025/516/oj"
     },
     {
-      "title": "CELEX:32026D2219: Council Decision (EU) 2026/2219 of 24 September 2026 on the conclusion of the Agreement, in the form of an Exchange of Letters, between the European Union and the Kingdom of Morocco amending and supplementing the Agreement for scientific and technological cooperation between the European Union and the Kingdom of Morocco setting out the terms and conditions for the participation of the Kingdom of Morocco in the Partnership for Research and Innovation in the Mediterranean Area (PRIMA)",
-      "topic": "R&D & Grants",
-      "date": "04 Oct 2026",
-      "relevance": "High",
-      "status": "EU legislation",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential r&d & grants implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026D2219"
-    },
-    {
-      "title": "CELEX:32026D2217: Council Decision (EU) 2026/2217 of 17 February 2026 on the signing and provisional application of the Agreement, in the form of an Exchange of Letters, between the European Union and the Kingdom of Morocco amending and supplementing the Agreement for scientific and technological cooperation between the European Union and the Kingdom of Morocco setting out the terms and conditions for the participation of the Kingdom of Morocco in the Partnership for Research and Innovation in the Mediterranean Area (PRIMA)",
-      "topic": "R&D & Grants",
-      "date": "04 Oct 2026",
-      "relevance": "High",
-      "status": "EU legislation",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential r&d & grants implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026D2217"
-    },
-    {
       "title": "CELEX:52026PC0556: Proposal for a COUNCIL IMPLEMENTING DECISION amending Implementing Decision (EU) 2021/1778 as regards an extension of the authorisation for Germany to apply a special measure derogating from Article 193 of Directive 2006/112/EC on the common system of value added tax",
       "topic": "Tax & BEPS",
       "date": "Recent",
@@ -89,6 +67,28 @@
       "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
       "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0514"
+    },
+    {
+      "title": "CELEX:52026PC0461: Proposal for a COUNCIL IMPLEMENTING DECISION amending Implementing Decision (EU) 2018/485 as regards an extension of the authorisation for Denmark to apply a special measure derogating from Article 75 of Directive 2006/112/EC on the common system of value added tax",
+      "topic": "Tax & BEPS",
+      "date": "Recent",
+      "relevance": "High",
+      "status": "Commission proposals",
+      "summary": "New official EU publication identified by the finance relevance monitor.",
+      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
+      "action": "Review the official text, confirm scope and assign an owner if applicable.",
+      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0461"
+    },
+    {
+      "title": "CELEX:52026PC0457: Proposal for a COUNCIL IMPLEMENTING DECISION amending Implementing Decision (EU) 2024/1641 as regards an extension of the authorisation for Romania to apply special measures derogating from Article 26(1), point (a), and Article 168 of Directive 2006/112/EC on the common system of value added tax",
+      "topic": "Tax & BEPS",
+      "date": "Recent",
+      "relevance": "High",
+      "status": "Commission proposals",
+      "summary": "New official EU publication identified by the finance relevance monitor.",
+      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
+      "action": "Review the official text, confirm scope and assign an owner if applicable.",
+      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0457"
     }
   ]
 }
