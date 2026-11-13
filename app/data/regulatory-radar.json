@@ -1,5 +1,5 @@
 {
-  "lastChecked": "12 Nov 2026",
+  "lastChecked": "13 Nov 2026",
   "generatedBy": "Rules-based fallback · Gemini returned 401 · live feed + standing watchlist",
   "items": [
     {
@@ -62,7 +62,7 @@
       "topic": "Tax & BEPS",
       "date": "03 Nov 2026",
       "relevance": "High",
-      "status": "Official Journal L",
+      "status": "EU legislation",
       "summary": "New official EU publication identified by the finance relevance monitor.",
       "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
       "action": "Review the official text, confirm scope and assign an owner if applicable.",
