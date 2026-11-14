@@ -1,6 +1,6 @@
 {
-  "lastChecked": "13 Nov 2026",
-  "generatedBy": "Rules-based fallback · Gemini returned 401 · live feed + standing watchlist",
+  "lastChecked": "14 Nov 2026",
+  "generatedBy": "Rules-based official-source monitor · live feed + standing watchlist",
   "items": [
     {
       "title": "EU Artificial Intelligence Act — phased compliance implementation",
@@ -45,50 +45,6 @@
       "financeImpact": "ERP, invoicing, tax determination and reporting processes may require phased changes across EU registrations and transaction flows.",
       "action": "Map affected transactions and registrations, compare system capability with expected digital-reporting requirements, and build an implementation roadmap.",
       "url": "https://eur-lex.europa.eu/eli/dir/2025/516/oj"
-    },
-    {
-      "title": "CELEX:32026D2495: Council Implementing Decision (EU) 2026/2495 of 29 October 2026 amending Implementing Decision (EU) 2024/1641 as regards an extension of the authorisation for Romania to apply special measures derogating from Article 26(1), point (a), and Article 168 of Directive 2006/112/EC on the common system of value added tax",
-      "topic": "Tax & BEPS",
-      "date": "04 Nov 2026",
-      "relevance": "High",
-      "status": "Official Journal L",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026D2495"
-    },
-    {
-      "title": "CELEX:32026D2482: Council Implementing Decision (EU) 2026/2482 of 29 October 2026 amending Implementing Decision (EU) 2018/485 as regards an extension of the authorisation for Denmark to apply a special measure derogating from Article 75 of Directive 2006/112/EC on the common system of value added tax",
-      "topic": "Tax & BEPS",
-      "date": "03 Nov 2026",
-      "relevance": "High",
-      "status": "EU legislation",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:32026D2482"
-    },
-    {
-      "title": "CELEX:52026PC0556: Proposal for a COUNCIL IMPLEMENTING DECISION amending Implementing Decision (EU) 2021/1778 as regards an extension of the authorisation for Germany to apply a special measure derogating from Article 193 of Directive 2006/112/EC on the common system of value added tax",
-      "topic": "Tax & BEPS",
-      "date": "Recent",
-      "relevance": "High",
-      "status": "Commission proposals",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0556"
-    },
-    {
-      "title": "CELEX:52026PC0514: Proposal for a COUNCIL IMPLEMENTING DECISION amending Implementing Decision (EU) 2021/512 as regards an extension of the authorisation for the United Kingdom to apply, in respect of Northern Ireland, a special measure derogating from Articles 16 and 168 of Directive 2006/112/EC on the common system of value added tax",
-      "topic": "Tax & BEPS",
-      "date": "Recent",
-      "relevance": "High",
-      "status": "Commission proposals",
-      "summary": "New official EU publication identified by the finance relevance monitor.",
-      "financeImpact": "Potential tax & beps implications require finance and adviser assessment.",
-      "action": "Review the official text, confirm scope and assign an owner if applicable.",
-      "url": "https://eur-lex.europa.eu/legal-content/AUTO/?uri=CELEX:52026PC0514"
     }
   ]
 }
